@@ -10,6 +10,7 @@ import 'leaflet/dist/leaflet.css'
 
 import koordinat from '../data/koordinat_fmipa.geojson?url'
 import gedung from '../data/gedung_fmipa.geojson?url'
+import edges from '../data/edges_fmipa.geojson?url'
 
 function MapView() {
   const center = [3.6071, 98.7154]
@@ -26,6 +27,8 @@ function MapView() {
       />
 
       <GedungFMIPA dataUrl={gedung} />
+
+      <JalurFMIPA dataUrl={edges} />
 
       <TitikFMIPA dataUrl={koordinat} />
     </MapContainer>
@@ -56,6 +59,30 @@ function GedungFMIPA({ dataUrl }) {
         layer.bindPopup(
           `<strong>${feature.properties.nama}</strong>`
         )
+      }}
+    />
+  )
+}
+
+function JalurFMIPA({ dataUrl }) {
+  const [data, setData] = React.useState(null)
+
+  React.useEffect(() => {
+    fetch(dataUrl)
+      .then((response) => response.json())
+      .then((json) => setData(json))
+  }, [dataUrl])
+
+  if (!data) {
+    return null
+  }
+
+  return (
+    <GeoJSON
+      data={data}
+      style={{
+        weight: 4,
+        opacity: 0.8,
       }}
     />
   )
