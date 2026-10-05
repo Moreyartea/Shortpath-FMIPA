@@ -26,12 +26,7 @@ function lineStringLength(coordinates) {
     const [lon1, lat1] = coordinates[i - 1]
     const [lon2, lat2] = coordinates[i]
 
-    total += haversineDistance(
-      lat1,
-      lon1,
-      lat2,
-      lon2
-    )
+    total += haversineDistance(lat1, lon1, lat2, lon2)
   }
 
   return total
@@ -102,8 +97,8 @@ class MinHeap {
       const parentIndex = Math.floor((index - 1) / 2)
 
       if (
-        this.items[parentIndex].distance <=
-        this.items[index].distance
+        this.items[parentIndex].priority <=
+        this.items[index].priority
       ) {
         break
       }
@@ -128,16 +123,16 @@ class MinHeap {
 
       if (
         leftIndex < this.items.length &&
-        this.items[leftIndex].distance <
-          this.items[smallestIndex].distance
+        this.items[leftIndex].priority <
+          this.items[smallestIndex].priority
       ) {
         smallestIndex = leftIndex
       }
 
       if (
         rightIndex < this.items.length &&
-        this.items[rightIndex].distance <
-          this.items[smallestIndex].distance
+        this.items[rightIndex].priority <
+          this.items[smallestIndex].priority
       ) {
         smallestIndex = rightIndex
       }
@@ -206,6 +201,56 @@ export function buildGraph(pointsGeoJson, edgesGeoJson) {
   }
 }
 
+function initializeSearch(graph, startIds) {
+  const distances = {}
+  const previous = {}
+  const previousEdge = {}
+
+  for (const nodeId of Object.keys(graph)) {
+    distances[nodeId] = Infinity
+    previous[nodeId] = null
+    previousEdge[nodeId] = null
+  }
+
+  for (const startId of startIds) {
+    if (graph[startId]) {
+      distances[startId] = 0
+    }
+  }
+
+  return {
+    distances,
+    previous,
+    previousEdge,
+  }
+}
+
+function reconstructPath(
+  targetId,
+  previous,
+  previousEdge
+) {
+  const path = []
+  const edgeIds = []
+
+  let current = targetId
+
+  while (current !== null) {
+    path.unshift(current)
+
+    if (previousEdge[current] !== null) {
+      edgeIds.unshift(previousEdge[current])
+    }
+
+    current = previous[current]
+  }
+
+  return {
+    path,
+    edgeIds,
+  }
+}
+
 export function dijkstra(graph, startIds, targetIds = []) {
   const starts = Array.isArray(startIds)
     ? startIds.map(Number)
@@ -217,15 +262,11 @@ export function dijkstra(graph, startIds, targetIds = []) {
       : [Number(targetIds)]
   )
 
-  const distances = {}
-  const previous = {}
-  const previousEdge = {}
-
-  for (const nodeId of Object.keys(graph)) {
-    distances[nodeId] = Infinity
-    previous[nodeId] = null
-    previousEdge[nodeId] = null
-  }
+  const {
+    distances,
+    previous,
+    previousEdge,
+  } = initializeSearch(graph, starts)
 
   const heap = new MinHeap()
 
@@ -234,10 +275,9 @@ export function dijkstra(graph, startIds, targetIds = []) {
       continue
     }
 
-    distances[startId] = 0
-
     heap.push({
       node: startId,
+      priority: 0,
       distance: 0,
     })
   }
@@ -277,6 +317,7 @@ export function dijkstra(graph, startIds, targetIds = []) {
 
         heap.push({
           node: edge.to,
+          priority: newDistance,
           distance: newDistance,
         })
       }
@@ -304,20 +345,11 @@ export function dijkstra(graph, startIds, targetIds = []) {
     }
   }
 
-  const path = []
-  const edgeIds = []
-
-  let current = reachedTarget
-
-  while (current !== null) {
-    path.unshift(current)
-
-    if (previousEdge[current] !== null) {
-      edgeIds.unshift(previousEdge[current])
-    }
-
-    current = previous[current]
-  }
+  const { path, edgeIds } = reconstructPath(
+    reachedTarget,
+    previous,
+    previousEdge
+  )
 
   return {
     found: true,
@@ -327,6 +359,238 @@ export function dijkstra(graph, startIds, targetIds = []) {
     targetId: reachedTarget,
     visitedCount,
   }
+}
+
+function heuristic(nodeId, targetIds, pointsById) {
+  const node = pointsById[nodeId]
+
+  if (!node) {
+    return 0
+  }
+
+  let minimum = Infinity
+
+  for (const targetId of targetIds) {
+    const target = pointsById[targetId]
+
+    if (!target) {
+      continue
+    }
+
+    const distance = haversineDistance(
+      node.lat,
+      node.lon,
+      target.lat,
+      target.lon
+    )
+
+    if (distance < minimum) {
+      minimum = distance
+    }
+  }
+
+  return minimum === Infinity ? 0 : minimum
+}
+
+export function aStar(
+  graph,
+  pointsById,
+  startIds,
+  targetIds = []
+) {
+  const starts = Array.isArray(startIds)
+    ? startIds.map(Number)
+    : [Number(startIds)]
+
+  const targets = new Set(
+    Array.isArray(targetIds)
+      ? targetIds.map(Number)
+      : [Number(targetIds)]
+  )
+
+  const {
+    distances,
+    previous,
+    previousEdge,
+  } = initializeSearch(graph, starts)
+
+  const heap = new MinHeap()
+
+  for (const startId of starts) {
+    if (!graph[startId]) {
+      continue
+    }
+
+    heap.push({
+      node: startId,
+      priority: heuristic(
+        startId,
+        targets,
+        pointsById
+      ),
+      distance: 0,
+    })
+  }
+
+  let visitedCount = 0
+  let reachedTarget = null
+
+  while (!heap.isEmpty()) {
+    const current = heap.pop()
+    const currentNode = current.node
+    const currentDistance = current.distance
+
+    if (currentDistance !== distances[currentNode]) {
+      continue
+    }
+
+    visitedCount += 1
+
+    if (
+      targets.size > 0 &&
+      targets.has(Number(currentNode))
+    ) {
+      reachedTarget = Number(currentNode)
+      break
+    }
+
+    const neighbors = graph[currentNode] || []
+
+    for (const edge of neighbors) {
+      const newDistance =
+        currentDistance + edge.weight
+
+      if (newDistance < distances[edge.to]) {
+        distances[edge.to] = newDistance
+        previous[edge.to] = currentNode
+        previousEdge[edge.to] = edge.edgeId
+
+        heap.push({
+          node: edge.to,
+          priority:
+            newDistance +
+            heuristic(
+              edge.to,
+              targets,
+              pointsById
+            ),
+          distance: newDistance,
+        })
+      }
+    }
+  }
+
+  if (targets.size === 0) {
+    return {
+      found: true,
+      distance: distances,
+      previous,
+      previousEdge,
+      visitedCount,
+    }
+  }
+
+  if (reachedTarget === null) {
+    return {
+      found: false,
+      distance: Infinity,
+      path: [],
+      edgeIds: [],
+      targetId: null,
+      visitedCount,
+    }
+  }
+
+  const { path, edgeIds } = reconstructPath(
+    reachedTarget,
+    previous,
+    previousEdge
+  )
+
+  return {
+    found: true,
+    distance: distances[reachedTarget],
+    path,
+    edgeIds,
+    targetId: reachedTarget,
+    visitedCount,
+  }
+}
+
+export function floydWarshall(graph) {
+  const nodes = Object.keys(graph).map(Number)
+  const distances = {}
+
+  for (const from of nodes) {
+    distances[from] = {}
+
+    for (const to of nodes) {
+      distances[from][to] =
+        from === to ? 0 : Infinity
+    }
+  }
+
+  for (const from of nodes) {
+    for (const edge of graph[from] || []) {
+      if (
+        edge.weight <
+        distances[from][edge.to]
+      ) {
+        distances[from][edge.to] = edge.weight
+      }
+    }
+  }
+
+  for (const middle of nodes) {
+    for (const from of nodes) {
+      if (distances[from][middle] === Infinity) {
+        continue
+      }
+
+      for (const to of nodes) {
+        if (distances[middle][to] === Infinity) {
+          continue
+        }
+
+        const throughMiddle =
+          distances[from][middle] +
+          distances[middle][to]
+
+        if (
+          throughMiddle <
+          distances[from][to]
+        ) {
+          distances[from][to] =
+            throughMiddle
+        }
+      }
+    }
+  }
+
+  return distances
+}
+
+function minimumDistanceBetweenSets(
+  distances,
+  startIds,
+  targetIds
+) {
+  let minimum = Infinity
+
+  for (const startId of startIds) {
+    for (const targetId of targetIds) {
+      const distance =
+        distances[Number(startId)]?.[
+          Number(targetId)
+        ] ?? Infinity
+
+      if (distance < minimum) {
+        minimum = distance
+      }
+    }
+  }
+
+  return minimum
 }
 
 export function pathToLatLng(path, pointsById) {
@@ -398,5 +662,113 @@ export function findRoute(
       result.path,
       pointsById
     ),
+  }
+}
+
+export function findRouteAStar(
+  graph,
+  pointsById,
+  asalGedungId,
+  tujuanGedungId
+) {
+  const startIds = getTitikGedung(asalGedungId)
+  const targetIds = getTitikGedung(tujuanGedungId)
+
+  if (startIds.length === 0) {
+    throw new Error(
+      `Gedung asal ${asalGedungId} belum memiliki titik jaringan.`
+    )
+  }
+
+  if (targetIds.length === 0) {
+    throw new Error(
+      `Gedung tujuan ${tujuanGedungId} belum memiliki titik jaringan.`
+    )
+  }
+
+  const result = aStar(
+    graph,
+    pointsById,
+    startIds,
+    targetIds
+  )
+
+  if (!result.found) {
+    return {
+      ...result,
+      latLng: [],
+    }
+  }
+
+  return {
+    ...result,
+    latLng: pathToLatLng(
+      result.path,
+      pointsById
+    ),
+  }
+}
+
+export function validateDijkstraAgainstFloyd(
+  graph,
+  buildingIds = Object.keys(gedungTitik)
+) {
+  const distances = floydWarshall(graph)
+  const results = []
+
+  for (const asal of buildingIds) {
+    for (const tujuan of buildingIds) {
+      const startIds = getTitikGedung(asal)
+      const targetIds = getTitikGedung(tujuan)
+
+      const dijkstraResult = dijkstra(
+        graph,
+        startIds,
+        targetIds
+      )
+
+      const dijkstraDistance =
+        dijkstraResult.found
+          ? dijkstraResult.distance
+          : Infinity
+
+      const floydDistance =
+        minimumDistanceBetweenSets(
+          distances,
+          startIds,
+          targetIds
+        )
+
+      const same =
+        (dijkstraDistance === Infinity &&
+          floydDistance === Infinity) ||
+        Math.abs(
+          dijkstraDistance -
+            floydDistance
+        ) <= 0.001
+
+      results.push({
+        asal,
+        tujuan,
+        dijkstraDistance,
+        floydDistance,
+        difference:
+          dijkstraDistance === Infinity ||
+          floydDistance === Infinity
+            ? 0
+            : Math.abs(
+                dijkstraDistance -
+                  floydDistance
+              ),
+        valid: same,
+      })
+    }
+  }
+
+  return {
+    valid: results.every(
+      (result) => result.valid
+    ),
+    results,
   }
 }

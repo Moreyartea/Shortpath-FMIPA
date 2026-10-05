@@ -7,6 +7,7 @@ import {
   CircleMarker,
   Popup,
   GeoJSON,
+  useMap,
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -14,7 +15,14 @@ import koordinat from '../data/koordinat_fmipa.geojson?url'
 import gedung from '../data/gedung_fmipa.geojson?url'
 import edges from '../data/edges_fmipa.geojson?url'
 
-function MapView({ routeEdgeIds = [] }) {
+function MapView({
+  routeEdgeIds = [],
+  routePath = [],
+  routePointIds = [],
+  startName = '',
+  destinationName = '',
+  showAllRoutes = false,
+}) {
   const center = [3.6071, 98.7154]
 
   return (
@@ -40,20 +48,126 @@ function MapView({ routeEdgeIds = [] }) {
       <JalurFMIPA
         dataUrl={edges}
         routeEdgeIds={routeEdgeIds}
+        showAllRoutes={showAllRoutes}
       />
 
       <TitikFMIPA dataUrl={koordinat} />
+
+      <RouteOverlay
+        routePath={routePath}
+        routePointIds={routePointIds}
+        startName={startName}
+        destinationName={destinationName}
+      />
     </MapContainer>
   )
 }
 
-function GedungFMIPA({ dataUrl }) {
-  const [data, setData] = React.useState(null)
+function RouteOverlay({
+  routePath,
+  routePointIds,
+  startName,
+  destinationName,
+}) {
+  const map = useMap()
 
   React.useEffect(() => {
+    if (routePath.length < 2) {
+      return
+    }
+
+    const bounds = routePath.map(
+      ([lat, lon]) => [lat, lon]
+    )
+
+    map.fitBounds(bounds, {
+      padding: [70, 70],
+      maxZoom: 20,
+    })
+  }, [map, routePath])
+
+  if (routePath.length === 0) {
+    return null
+  }
+
+  return routePath.map(
+    ([lat, lon], index) => {
+      const pointId =
+        routePointIds[index]
+
+      const isStart = index === 0
+
+      const isFinish =
+        index === routePath.length - 1
+
+      return (
+        <CircleMarker
+          key={`route-point-${pointId}-${index}`}
+          center={[lat, lon]}
+          radius={
+            isStart || isFinish ? 9 : 6
+          }
+          pathOptions={{
+            weight: 3,
+            fillOpacity: 0.9,
+          }}
+        >
+          <Popup>
+            <div className="text-sm">
+              <strong>
+                {isStart
+                  ? 'Mulai'
+                  : isFinish
+                    ? 'Tujuan'
+                    : `Titik ${pointId}`}
+              </strong>
+
+              <div className="mt-1">
+                {isStart
+                  ? startName
+                  : isFinish
+                    ? `${destinationName} melalui titik ${pointId}`
+                    : 'Ikuti jalur yang disorot.'}
+              </div>
+            </div>
+          </Popup>
+        </CircleMarker>
+      )
+    }
+  )
+}
+
+function GedungFMIPA({ dataUrl }) {
+  const [data, setData] =
+    React.useState(null)
+
+  React.useEffect(() => {
+    let active = true
+
     fetch(dataUrl)
-      .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            'Data gedung gagal dimuat.'
+          )
+        }
+
+        return response.json()
+      })
+      .then((json) => {
+        if (active) {
+          setData(json)
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setData(null)
+        }
+      })
+
+    return () => {
+      active = false
+    }
   }, [dataUrl])
 
   if (!data) {
@@ -69,23 +183,52 @@ function GedungFMIPA({ dataUrl }) {
       }}
       onEachFeature={(feature, layer) => {
         layer.bindPopup(
-          `<strong>${feature.properties.nama}</strong>`
+          feature.properties?.nama ||
+            'Gedung'
         )
       }}
     />
   )
 }
 
-function JalurFMIPA({ dataUrl, routeEdgeIds }) {
-  const [data, setData] = React.useState(null)
+function JalurFMIPA({
+  dataUrl,
+  routeEdgeIds,
+  showAllRoutes,
+}) {
+  const [data, setData] =
+    React.useState(null)
 
   React.useEffect(() => {
+    let active = true
+
     fetch(dataUrl)
-      .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            'Data jalur gagal dimuat.'
+          )
+        }
+
+        return response.json()
+      })
+      .then((json) => {
+        if (active) {
+          setData(json)
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setData(null)
+        }
+      })
+
+    return () => {
+      active = false
+    }
   }, [dataUrl])
 
-  if (!data || routeEdgeIds.length === 0) {
+  if (!data) {
     return null
   }
 
@@ -93,53 +236,108 @@ function JalurFMIPA({ dataUrl, routeEdgeIds }) {
     routeEdgeIds.map(Number)
   )
 
-  const routeFeatures = data.features.filter(
-    (feature) =>
-      routeIds.has(Number(feature.properties.id))
-  )
+  const routeFeatures =
+    data.features.filter(
+      (feature) =>
+        routeIds.has(
+          Number(feature.properties.id)
+        )
+    )
+
+  const allFeatures = data.features
 
   return (
-    <GeoJSON
-      data={{
-        type: 'FeatureCollection',
-        features: routeFeatures,
-      }}
-      style={{
-        weight: 7,
-        opacity: 0.95,
-      }}
-    />
+    <>
+      {showAllRoutes && (
+        <GeoJSON
+          key="all-routes"
+          data={{
+            type: 'FeatureCollection',
+            features: allFeatures,
+          }}
+          style={{
+            weight: 3,
+            opacity: 0.65,
+          }}
+        />
+      )}
+
+      {routeFeatures.length > 0 && (
+        <GeoJSON
+          key={`route-${routeEdgeIds.join('-')}`}
+          data={{
+            type: 'FeatureCollection',
+            features: routeFeatures,
+          }}
+          style={{
+            weight: 8,
+            opacity: 0.95,
+          }}
+        />
+      )}
+    </>
   )
 }
 
 function TitikFMIPA({ dataUrl }) {
-  const [data, setData] = React.useState(null)
+  const [data, setData] =
+    React.useState(null)
 
   React.useEffect(() => {
+    let active = true
+
     fetch(dataUrl)
-      .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            'Data titik gagal dimuat.'
+          )
+        }
+
+        return response.json()
+      })
+      .then((json) => {
+        if (active) {
+          setData(json)
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setData(null)
+        }
+      })
+
+    return () => {
+      active = false
+    }
   }, [dataUrl])
 
   if (!data) {
     return null
   }
 
-  return data.features.map((feature) => {
-    const [lon, lat] = feature.geometry.coordinates
+  return data.features.map(
+    (feature) => {
+      const [lon, lat] =
+        feature.geometry.coordinates
 
-    return (
-      <CircleMarker
-        key={feature.properties.id}
-        center={[lat, lon]}
-        radius={7}
-      >
-        <Popup>
-          Titik {feature.properties.id}
-        </Popup>
-      </CircleMarker>
-    )
-  })
+      return (
+        <CircleMarker
+          key={feature.properties.id}
+          center={[lat, lon]}
+          radius={7}
+          pathOptions={{
+            weight: 2,
+            fillOpacity: 0.75,
+          }}
+        >
+          <Popup>
+            Titik {feature.properties.id}
+          </Popup>
+        </CircleMarker>
+      )
+    }
+  )
 }
 
 export default MapView
