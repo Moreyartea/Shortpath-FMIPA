@@ -1,3 +1,5 @@
+// src/components/MapView.jsx
+
 import React from 'react'
 import {
   MapContainer,
@@ -12,23 +14,33 @@ import koordinat from '../data/koordinat_fmipa.geojson?url'
 import gedung from '../data/gedung_fmipa.geojson?url'
 import edges from '../data/edges_fmipa.geojson?url'
 
-function MapView() {
+function MapView({ routeEdgeIds = [] }) {
   const center = [3.6071, 98.7154]
 
   return (
     <MapContainer
       center={center}
       zoom={18}
+      minZoom={16}
+      maxZoom={22}
+      zoomControl={true}
+      scrollWheelZoom={true}
+      doubleClickZoom={true}
+      touchZoom={true}
+      dragging={true}
       className="h-full w-full"
     >
       <TileLayer
-        attribution='&copy; OpenStreetMap contributors'
+        attribution="&copy; OpenStreetMap contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
       <GedungFMIPA dataUrl={gedung} />
 
-      <JalurFMIPA dataUrl={edges} />
+      <JalurFMIPA
+        dataUrl={edges}
+        routeEdgeIds={routeEdgeIds}
+      />
 
       <TitikFMIPA dataUrl={koordinat} />
     </MapContainer>
@@ -64,7 +76,7 @@ function GedungFMIPA({ dataUrl }) {
   )
 }
 
-function JalurFMIPA({ dataUrl }) {
+function JalurFMIPA({ dataUrl, routeEdgeIds }) {
   const [data, setData] = React.useState(null)
 
   React.useEffect(() => {
@@ -73,16 +85,28 @@ function JalurFMIPA({ dataUrl }) {
       .then((json) => setData(json))
   }, [dataUrl])
 
-  if (!data) {
+  if (!data || routeEdgeIds.length === 0) {
     return null
   }
 
+  const routeIds = new Set(
+    routeEdgeIds.map(Number)
+  )
+
+  const routeFeatures = data.features.filter(
+    (feature) =>
+      routeIds.has(Number(feature.properties.id))
+  )
+
   return (
     <GeoJSON
-      data={data}
+      data={{
+        type: 'FeatureCollection',
+        features: routeFeatures,
+      }}
       style={{
-        weight: 4,
-        opacity: 0.8,
+        weight: 7,
+        opacity: 0.95,
       }}
     />
   )
