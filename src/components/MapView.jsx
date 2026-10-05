@@ -22,6 +22,7 @@ function MapView({
   startName = '',
   destinationName = '',
   showAllRoutes = false,
+  userLocation = null,
 }) {
   const center = [3.6071, 98.7154]
 
@@ -52,6 +53,16 @@ function MapView({
       />
 
       <TitikFMIPA dataUrl={koordinat} />
+
+      {userLocation && (
+        <CircleMarker
+          center={[userLocation.lat, userLocation.lon]}
+          radius={10}
+          pathOptions={{ weight: 3, fillOpacity: 0.9 }}
+        >
+          <Popup>Lokasi Anda</Popup>
+        </CircleMarker>
+      )}
 
       <RouteOverlay
         routePath={routePath}

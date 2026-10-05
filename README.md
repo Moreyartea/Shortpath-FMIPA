@@ -1,16 +1,43 @@
-# React + Vite
+# Pemetaan Digital FMIPA Unimed
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi React + Vite + Tailwind + Leaflet untuk pemetaan jaringan lintasan dan shortest path FMIPA Unimed.
 
-Currently, two official plugins are available:
+## Menjalankan
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Untuk production:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run build
+npm run preview
+```
 
-## Expanding the ESLint configuration
+## Supabase
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Salin `.env.example` menjadi `.env` lalu isi:
+
+```text
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+```
+
+Jalankan `supabase/schema.sql` pada SQL Editor Supabase. Pendaftaran publik harus dimatikan. Jangan masukkan `service_role` key ke frontend atau repository.
+
+Tanpa konfigurasi Supabase, pencarian ruangan menggunakan data lokal hasil ekstraksi CSV. Setelah Supabase dikonfigurasi dan tabel berisi data, aplikasi membaca data Supabase.
+
+## Fitur
+
+- Peta gedung dan seluruh jalur.
+- Rute Dijkstra dan perbandingan A*.
+- Pencarian ruangan berdasarkan kode, nama, alias, dan gedung.
+- GPS sebagai lokasi asal dan titik jaringan terdekat.
+- Admin ruangan: login, tambah, ubah, hapus, filter, dan import massal.
+- Mobile-first.
+
+## Deploy
+
+Project adalah static frontend. Deploy dapat dilakukan ke Vercel, Netlify, atau Cloudflare sesuai konfigurasi platform terbaru. Variabel `VITE_SUPABASE_URL` dan `VITE_SUPABASE_ANON_KEY` diisi pada environment variables platform.

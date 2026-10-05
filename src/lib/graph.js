@@ -772,3 +772,34 @@ export function validateDijkstraAgainstFloyd(
     results,
   }
 }
+export function findRouteFromPoint(
+  graph,
+  pointsById,
+  startPointId,
+  tujuanGedungId
+) {
+  const targetIds = getTitikGedung(tujuanGedungId)
+  if (targetIds.length === 0) {
+    throw new Error(`Gedung tujuan ${tujuanGedungId} belum memiliki titik jaringan.`)
+  }
+  const result = dijkstra(graph, [Number(startPointId)], targetIds)
+  return result.found
+    ? { ...result, latLng: pathToLatLng(result.path, pointsById) }
+    : { ...result, latLng: [] }
+}
+
+export function findRouteAStarFromPoint(
+  graph,
+  pointsById,
+  startPointId,
+  tujuanGedungId
+) {
+  const targetIds = getTitikGedung(tujuanGedungId)
+  if (targetIds.length === 0) {
+    throw new Error(`Gedung tujuan ${tujuanGedungId} belum memiliki titik jaringan.`)
+  }
+  const result = aStar(graph, pointsById, [Number(startPointId)], targetIds)
+  return result.found
+    ? { ...result, latLng: pathToLatLng(result.path, pointsById) }
+    : { ...result, latLng: [] }
+}
