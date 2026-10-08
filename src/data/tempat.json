@@ -1,0 +1,288 @@
+[
+  {
+    "id": "syawal",
+    "nama": "Gedung Syawal",
+    "label": "Syawal",
+    "namaLengkap": "Gedung Prof. Dr. Syawal Gultom, M.Pd.",
+    "kelompok": "pusat",
+    "alias": [
+      "dekanat",
+      "gedung dekanat",
+      "gedung fakultas",
+      "syawal gultom"
+    ],
+    "gedung": [
+      {
+        "kode": "001",
+        "lantai": 3
+      }
+    ],
+    "titik": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "namaTitik": {
+      "5": "Lobi Timur Gedung Syawal (lobi utama)",
+      "6": "Lobi Barat Gedung Syawal",
+      "7": "Lobi Utara Gedung Syawal",
+      "8": "Lobi Selatan Gedung Syawal"
+    },
+    "poligon": "005"
+  },
+  {
+    "id": "matematika",
+    "nama": "Gedung Matematika",
+    "label": "Matematika",
+    "kelompok": "jurusan",
+    "alias": [
+      "jurusan matematika"
+    ],
+    "gedung": [
+      {
+        "kode": "002",
+        "lantai": 8
+      }
+    ],
+    "titik": [
+      3
+    ],
+    "poligon": "003"
+  },
+  {
+    "id": "kimia",
+    "nama": "Gedung Kimia",
+    "label": "Kimia",
+    "kelompok": "jurusan",
+    "alias": [
+      "jurusan kimia"
+    ],
+    "gedung": [
+      {
+        "kode": "003",
+        "lantai": 10
+      }
+    ],
+    "titik": [
+      4
+    ],
+    "poligon": "004"
+  },
+  {
+    "id": "fisika",
+    "nama": "Gedung Fisika",
+    "label": "Fisika",
+    "kelompok": "jurusan",
+    "alias": [
+      "jurusan fisika"
+    ],
+    "gedung": [
+      {
+        "kode": "004",
+        "lantai": 9
+      }
+    ],
+    "titik": [
+      1
+    ],
+    "poligon": "001"
+  },
+  {
+    "id": "biologi",
+    "nama": "Gedung Biologi",
+    "label": "Biologi",
+    "kelompok": "jurusan",
+    "alias": [
+      "jurusan biologi"
+    ],
+    "gedung": [
+      {
+        "kode": "005",
+        "lantai": 10
+      }
+    ],
+    "titik": [
+      2
+    ],
+    "poligon": "002"
+  },
+  {
+    "id": "bilingual",
+    "nama": "Gedung Bilingual",
+    "label": "Bilingual",
+    "kelompok": "lainnya",
+    "alias": [],
+    "gedung": [
+      {
+        "kode": "006",
+        "lantai": 2
+      }
+    ],
+    "titik": [
+      14
+    ],
+    "poligon": "011"
+  },
+  {
+    "id": "lab-kimia",
+    "nama": "Lab. Kimia",
+    "label": "Lab. Kimia",
+    "namaLengkap": "Gedung Laboratorium Kimia",
+    "kelompok": "lab",
+    "alias": [
+      "laboratorium kimia"
+    ],
+    "gedung": [
+      {
+        "kode": "007",
+        "lantai": 3
+      }
+    ],
+    "titik": [
+      9
+    ],
+    "poligon": "006"
+  },
+  {
+    "id": "lab-fisika",
+    "nama": "Lab. Fisika",
+    "label": "Lab. Fisika",
+    "namaLengkap": "Gedung Laboratorium Fisika",
+    "kelompok": "lab",
+    "alias": [
+      "laboratorium fisika"
+    ],
+    "gedung": [
+      {
+        "kode": "008",
+        "lantai": 4
+      }
+    ],
+    "titik": [
+      13
+    ],
+    "poligon": "010"
+  },
+  {
+    "id": "lab-komputer",
+    "nama": "Lab. Komputer",
+    "label": "Lab. Komputer",
+    "namaLengkap": "Gedung Laboratorium Komputer",
+    "kelompok": "lab",
+    "alias": [
+      "laboratorium komputer"
+    ],
+    "gedung": [
+      {
+        "kode": "009",
+        "lantai": 3
+      }
+    ],
+    "titik": [
+      10
+    ],
+    "poligon": "007"
+  },
+  {
+    "id": "lab-biologi",
+    "nama": "Lab. Biologi",
+    "label": "Lab. Biologi",
+    "namaLengkap": "Gedung Laboratorium Biologi (gedung 010 dan 011)",
+    "kelompok": "lab",
+    "alias": [
+      "laboratorium biologi"
+    ],
+    "gedung": [
+      {
+        "kode": "010",
+        "lantai": 3
+      },
+      {
+        "kode": "011",
+        "lantai": 4
+      }
+    ],
+    "kodeTambahan": [
+      "010/011?"
+    ],
+    "titik": [
+      11
+    ],
+    "poligon": "008"
+  },
+  {
+    "id": "belajar-bersama",
+    "nama": "Gedung Belajar Bersama",
+    "label": "Belajar Bersama",
+    "kelompok": "lainnya",
+    "alias": [
+      "belajar bersama",
+      "gbb"
+    ],
+    "gedung": [
+      {
+        "kode": "012",
+        "lantai": 2
+      }
+    ],
+    "titik": [
+      12
+    ],
+    "poligon": "009"
+  },
+  {
+    "id": "rumah-kaca",
+    "nama": "Rumah Kaca",
+    "label": "Rumah Kaca",
+    "kelompok": "taman",
+    "alias": [
+      "green house",
+      "greenhouse"
+    ],
+    "gedung": [],
+    "titik": [
+      18
+    ],
+    "poligon": "012"
+  },
+  {
+    "id": "rumah-hewan",
+    "nama": "Rumah Hewan FMIPA",
+    "label": "Rumah Hewan",
+    "kelompok": "taman",
+    "alias": [],
+    "gedung": [],
+    "titik": [
+      15
+    ],
+    "poligon": "013"
+  },
+  {
+    "id": "taman-biologi",
+    "nama": "Taman Biologi",
+    "label": "Taman Biologi",
+    "kelompok": "taman",
+    "alias": [],
+    "gedung": [],
+    "titik": [
+      17
+    ],
+    "poligon": "014"
+  },
+  {
+    "id": "serbaguna-taman",
+    "nama": "Ruang Serbaguna Taman Biologi",
+    "label": "Serbaguna Taman",
+    "kelompok": "taman",
+    "alias": [
+      "serbaguna",
+      "ruang serbaguna"
+    ],
+    "gedung": [],
+    "titik": [
+      16
+    ],
+    "poligon": "015"
+  }
+]

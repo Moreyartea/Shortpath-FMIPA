@@ -49,6 +49,8 @@ declare
   kode_value text;
   nama_value text;
   alias_value text;
+  kategori_value text;
+  status_value text;
   gedung_value text;
   lantai_value integer;
   nomor_value text;
@@ -66,6 +68,8 @@ begin
     kode_value := trim(item->>'kode');
     nama_value := trim(item->>'nama');
     alias_value := nullif(trim(item->>'alias'), '');
+    kategori_value := nullif(trim(item->>'kategori'), '');
+    status_value := nullif(trim(item->>'status'), '');
     gedung_value := trim(item->>'gedung_id');
     lantai_value := (item->>'lantai')::integer;
     nomor_value := trim(item->>'nomor');
@@ -74,14 +78,16 @@ begin
       raise exception 'Ada baris import yang tidak valid';
     end if;
 
-    insert into public.ruangan (kode, gedung_id, lantai, nomor, nama, alias)
-    values (kode_value, gedung_value, lantai_value, nomor_value, nama_value, alias_value)
+    insert into public.ruangan (kode, gedung_id, lantai, nomor, nama, alias, kategori, status)
+    values (kode_value, gedung_value, lantai_value, nomor_value, nama_value, alias_value, kategori_value, status_value)
     on conflict (kode) do update set
       gedung_id = excluded.gedung_id,
       lantai = excluded.lantai,
       nomor = excluded.nomor,
       nama = excluded.nama,
       alias = excluded.alias,
+      kategori = coalesce(excluded.kategori, public.ruangan.kategori),
+      status = excluded.status,
       updated_at = now();
 
     total := total + 1;

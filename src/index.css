@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #0f172a; background: #f8fafc; -webkit-tap-highlight-color: transparent; }
+
+/* Fokus yang jelas untuk pengguna keyboard dan pembaca layar */
+:where(button, a, input, select, summary):focus-visible { outline: 3px solid #1d4ed8; outline-offset: 2px; }
+button:disabled { opacity: 0.55; cursor: not-allowed; }
+:where(button, summary) { cursor: pointer; }
+:where(button) { min-height: 2.25rem; }
+
+/* Tailwind (preflight) membuat gambar max-width:100%, itu merusak ubin peta Leaflet */
+.leaflet-container img { max-width: none !important; }
+.leaflet-container { font-family: inherit; background: #e5e7eb; }
+.leaflet-container a { color: #1d4ed8; }
+
+/* Label nama gedung di tengah poligon */
+.peta-label { background: transparent; border: 0; }
+.peta-label span {
+  position: absolute; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none;
+  font-size: 12px; font-weight: 700; color: #0f172a;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0 0 4px #fff;
+}
+
+.peta-label-bawah span { transform: translate(-50%, 16px); }
+
+/* Penanda titik awal (A) dan tujuan (B) */
+.peta-pin { background: transparent; border: 0; }
+.peta-pin span {
+  display: flex; width: 30px; height: 30px; align-items: center; justify-content: center;
+  border-radius: 9999px; border: 3px solid #fff; color: #fff; font-size: 14px; font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.pin-a span { background: #16a34a; }
+.pin-b span { background: #dc2626; }
+
+/* Mode "pilih di peta": kursor menunjukkan gedung bisa diketuk */
+[data-pilih="asal"] .leaflet-interactive, [data-pilih="tujuan"] .leaflet-interactive { cursor: crosshair; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
