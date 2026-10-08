@@ -63,7 +63,7 @@ function Peta() {
   const [statusGps, setStatusGps] = useState(STATUS_GPS_KOSONG)
   const [pilihPeta, setPilihPeta] = useState(null)
   const [panel, setPanel] = useState('mid')
-  const [tampilJalur, setTampilJalur] = useState(true)
+  const [tampilJalur, setTampilJalur] = useState(false)
   const [panduan, setPanduan] = useState(() => !pernahMelihatPanduan())
   const [pesanBagikan, setPesanBagikan] = useState('')
   const awalSentuh = useRef(null)
@@ -350,9 +350,14 @@ function Peta() {
           )}
 
           <footer className="mt-8 space-y-2 border-t border-slate-200 pt-4 text-xs text-slate-600">
-            <label className="flex items-center gap-2">
-              <input type="checkbox" checked={tampilJalur} onChange={(e) => setTampilJalur(e.target.checked)} className="h-4 w-4" />
-              Tampilkan jalur jalan kaki di peta
+            <label className="flex items-center justify-between gap-2 cursor-pointer rounded-lg bg-slate-50 p-2 text-slate-700 hover:bg-slate-100">
+              <span className="font-semibold">Tampilkan seluruh rute di peta</span>
+              <input
+                type="checkbox"
+                checked={tampilJalur}
+                onChange={(e) => setTampilJalur(e.target.checked)}
+                className="h-4 w-4 rounded accent-sky-700 cursor-pointer"
+              />
             </label>
             <p>
               Peta jalur digambar manual dan perkiraan jarak bisa berbeda di lapangan. Data ruangan: {sumber === 'supabase' ? 'database kampus' : 'berkas bawaan'}.
@@ -369,6 +374,7 @@ function Peta() {
           edges={edges}
           pointsById={graphData.pointsById}
           tampilJalur={tampilJalur}
+          onToggleJalur={() => setTampilJalur((v) => !v)}
           garisRute={garisRute}
           kunciRute={kunciRuteAtur}
           asal={asal && { ...asal, titikId: rute?.found ? rute.startId : titikAsal[0], tempatId: asal.tempat?.id }}

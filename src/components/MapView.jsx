@@ -36,12 +36,44 @@ function AturPandangan({ batas, garis, kunciRute }) {
   return null
 }
 
-function TombolPusat({ batas }) {
+function KontrolPetaAtas({ batas, tampilJalur, onToggleJalur }) {
   const map = useMap()
   return (
-    <button type="button" onClick={() => map.fitBounds(batas, { padding: [8, 8] })} className="absolute left-2.5 top-2.5 z-[1000] rounded-lg bg-white px-3 py-2 text-xs font-semibold text-slate-900 shadow-md hover:bg-slate-50" aria-label="Kembali ke tampilan seluruh kawasan FMIPA">
-      Seluruh kawasan
-    </button>
+    <div className="pointer-events-auto absolute left-2.5 top-2.5 z-[1000] flex flex-wrap items-center gap-1.5">
+      <button
+        type="button"
+        onClick={() => map.fitBounds(batas, { padding: [8, 8] })}
+        className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-slate-900 shadow-md hover:bg-slate-50 active:bg-slate-100"
+        aria-label="Kembali ke tampilan seluruh kawasan FMIPA"
+      >
+        Seluruh kawasan
+      </button>
+
+      {onToggleJalur && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation()
+            onToggleJalur()
+          }}
+          className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold shadow-md transition-colors ${
+            tampilJalur
+              ? 'bg-sky-800 text-white hover:bg-sky-900'
+              : 'bg-white text-slate-700 hover:bg-slate-50 active:bg-slate-100'
+          }`}
+          aria-pressed={tampilJalur}
+          aria-label={tampilJalur ? 'Sembunyikan seluruh rute di peta' : 'Tampilkan seluruh rute di peta'}
+          title={tampilJalur ? 'Sembunyikan seluruh rute jalan kaki' : 'Nyalakan tampilan seluruh rute jalan kaki di peta'}
+        >
+          <span
+            className={`inline-block h-2 w-2 rounded-full transition-colors ${
+              tampilJalur ? 'bg-emerald-400' : 'bg-slate-400'
+            }`}
+          />
+          <span>{tampilJalur ? 'Semua rute aktif' : 'Lihat semua rute'}</span>
+        </button>
+      )}
+    </div>
   )
 }
 
@@ -81,7 +113,7 @@ function LabelGedung({ bentuk, berpin }) {
     .map((b) => <Marker key={b.tempatId} position={[b.pusat.lat, b.pusat.lon]} icon={ikon.get(b.tempatId)[berpin.has(b.tempatId) ? 1 : 0]} interactive={false} keyboard={false} zIndexOffset={-100} />)
 }
 
-export default function MapView({ bentuk, batas, edges, pointsById, tampilJalur, garisRute, kunciRute, asal, tujuan, tujuanTempatId, terpilih, posisiPengguna, pilihPeta, onPilihTempat, onBatalPilih }) {
+export default function MapView({ bentuk, batas, edges, pointsById, tampilJalur, onToggleJalur, garisRute, kunciRute, asal, tujuan, tujuanTempatId, terpilih, posisiPengguna, pilihPeta, onPilihTempat, onBatalPilih }) {
   const [petaSiap, setPetaSiap] = useState(false)
   const garisJalur = useMemo(
     () => edges.features.map((f) => ({ id: f.properties.id, positions: (f.geometry.type === 'MultiLineString' ? f.geometry.coordinates.flat() : f.geometry.coordinates).map(([lon, lat]) => [lat, lon]) })),
@@ -139,7 +171,7 @@ export default function MapView({ bentuk, batas, edges, pointsById, tampilJalur,
           </>
         )}
 
-        <TombolPusat batas={batas} />
+        <KontrolPetaAtas batas={batas} tampilJalur={tampilJalur} onToggleJalur={onToggleJalur} />
       </MapContainer>
 
       <div className="pointer-events-none absolute right-2.5 top-2.5 z-[1000] flex h-10 w-10 flex-col items-center justify-center rounded-full bg-white/95 text-[10px] font-bold leading-none text-slate-800 shadow-md" aria-label="Utara berada di bagian atas peta">
