@@ -1,7 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { batas, bentuk, edges, graphData, indeks, tempat } from './data'
+import { batas, bentuk, edges, graphData, indeks, poligon, tempat } from './data'
 import { useRuangan } from './hooks/useRuangan'
-import { findNearestPoint, getCurrentPosition, JARAK_DI_KAMPUS_M, pesanGalatGps } from './lib/gps'
+import { findNearestPoint, findNearestPointForPlace, findPlaceContainingPoint, getCurrentPosition, JARAK_DI_KAMPUS_M, pesanGalatGps } from './lib/gps'
 import { susunHasil, pilihanCepat } from './lib/hasilCari'
 import { bangunKosakata } from './lib/search'
 import { geometriRute, hitungRute, jarakKeSemuaTempat, langkahRute } from './lib/routing'
@@ -142,14 +142,22 @@ function Peta() {
       const pos = await getCurrentPosition()
       const lokasi = { lat: pos.coords.latitude, lon: pos.coords.longitude }
       const akurasi = pos.coords.accuracy || 0
-      const dekat = findNearestPoint(lokasi, graphData.pointsById)
+      const tempatGps = findPlaceContainingPoint(lokasi, poligon, tempat)
+      const titikTempat = tempatGps ? findNearestPointForPlace(lokasi, tempatGps, graphData.pointsById) : null
+      const dekat = titikTempat || findNearestPoint(lokasi, graphData.pointsById)
       setPosisiPengguna({ ...lokasi, akurasi })
       if (!dekat || dekat.distance > JARAK_DI_KAMPUS_M) {
         setStatusGps({ jenis: 'galat', pesan: `Lokasimu sekitar ${Math.round(dekat?.distance ?? 0)} m dari jalur terdekat, sepertinya di luar kawasan FMIPA. Pilih titik awal secara manual.` })
         setModeAsal('menu')
         return
       }
-      setAsalGps({ ...lokasi, akurasi, titikId: dekat.id, jarak: dekat.distance })
+      setAsalGps({
+        ...lokasi,
+        akurasi,
+        titikId: dekat.id,
+        jarak: dekat.distance,
+        berdasarkanArea: Boolean(tempatGps),
+      })
       setDari('')
       setBukaAsal(false)
       setStatusGps({ jenis: 'info', pesan: akurasi > 50 ? 'Akurasi GPS rendah, posisimu bisa meleset. Jika ragu, pilih gedung terdekat secara manual.' : '' })

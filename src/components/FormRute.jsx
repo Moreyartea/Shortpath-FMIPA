@@ -119,7 +119,7 @@ export default function FormRute({
             judul="A"
             warna="bg-green-600"
             utama={asal.jenis === 'gps' ? 'Lokasi saya' : asal.tempat.nama}
-            tambahan={asal.jenis === 'gps' ? `Terdekat dari jalur: ${asal.tempat.nama} (±${Math.round(asal.jarak)} m)` : 'Titik awal'}
+            tambahan={asal.jenis === 'gps' ? (asal.berdasarkanArea ? `Berada di area: ${asal.tempat.nama}` : `Terdekat dari jalur: ${asal.tempat.nama} (±${Math.round(asal.jarak)} m)`) : 'Titik awal'}
             onUbah={onUbahAsal}
             onTukar={tampilTujuan && asal.jenis === 'tempat' ? onTukar : undefined}
           />

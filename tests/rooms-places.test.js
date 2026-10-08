@@ -5,7 +5,7 @@ import { namaTitik, posisiRelatif, ringkasOrientasi, tempatTerhubung } from '../
 import { bearing, namaArah, pusatPoligon } from '../src/lib/geo'
 import { formatJarak, perkiraanMenit, teksMenit, teksLantai } from '../src/lib/format'
 import { bacaUrl, tulisUrl } from '../src/lib/urlState'
-import { pesanGalatGps } from '../src/lib/gps'
+import { findPlaceContainingPoint, pesanGalatGps } from '../src/lib/gps'
 
 describe('Kategori dan normalisasi ruangan', () => {
   test('kategori dari nama', () => {
@@ -137,6 +137,25 @@ describe('Format, URL, dan GPS', () => {
     expect(pesanGalatGps({ code: 1 })).toMatch(/ditolak/)
     expect(pesanGalatGps({ code: 2 })).toMatch(/tidak tersedia/)
     expect(pesanGalatGps({ code: 3 })).toMatch(/terlalu lama/)
+  })
+
+  test('GPS di dalam gedung memakai gedung tersebut, bukan titik tempat lain yang lebih dekat', () => {
+    const titikLabKomputer = graphData.pointsById[10]
+    const tempatGps = findPlaceContainingPoint(
+      { lat: titikLabKomputer.lat, lon: titikLabKomputer.lon },
+      poligon,
+      tempat
+    )
+    expect(tempatGps?.id).toBe('lab-komputer')
+  })
+
+  test('GPS di luar polygon gedung tidak memaksa memilih gedung', () => {
+    const tempatGps = findPlaceContainingPoint(
+      { lat: 3.6078, lon: 98.716 },
+      poligon,
+      tempat
+    )
+    expect(tempatGps).toBeNull()
   })
 })
 
