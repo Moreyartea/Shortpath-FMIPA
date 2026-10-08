@@ -54,6 +54,7 @@ function Peta() {
   const [posisiPengguna, setPosisiPengguna] = useState(null)
   const [ke, setKe] = useState(awal.ke)
   const [ruanganTujuan, setRuanganTujuan] = useState(awal.ruang)
+  const [ruanganAsal, setRuanganAsal] = useState(null)
   const [kueriTujuan, setKueriTujuan] = useState('')
   const [kueriAsal, setKueriAsal] = useState('')
   const [bukaTujuan, setBukaTujuan] = useState(false)
@@ -73,9 +74,9 @@ function Peta() {
 
   const asal = useMemo(() => {
     if (asalGps) return { ...asalGps, jenis: 'gps', tempat: indeks.byTitik.get(asalGps.titikId) }
-    if (dari) return { jenis: 'tempat', tempat: indeks.byId.get(dari) }
+    if (dari) return { jenis: 'tempat', tempat: indeks.byId.get(dari), ruangan: ruanganAsal }
     return null
-  }, [asalGps, dari])
+  }, [asalGps, dari, ruanganAsal])
   const tujuan = useMemo(() => (ke ? { tempat: indeks.byId.get(ke), ruangan: ruanganTujuan } : null), [ke, ruanganTujuan])
   const titikAsal = useMemo(() => (asalGps ? [asalGps.titikId] : dari ? indeks.byId.get(dari).titik : []), [asalGps, dari])
 
@@ -89,8 +90,8 @@ function Peta() {
     [kueriTujuan, daftarRuangan, jarakTempat, kosakata]
   )
   const hasilAsal = useMemo(
-    () => susunHasil({ kueri: kueriAsal, daftarTempat: tempat, ruangan: [], namaTempat: namaCari, hanyaTempat: true, kosakata }),
-    [kueriAsal, kosakata]
+    () => susunHasil({ kueri: kueriAsal, daftarTempat: tempat, ruangan: daftarRuangan, namaTempat: namaCari, hanyaTempat: false, kosakata }),
+    [kueriAsal, daftarRuangan, kosakata]
   )
 
   // ---------- alamat halaman (bisa dibagikan) ----------
@@ -123,8 +124,9 @@ function Peta() {
     setDetail(null)
     setPanel('mid')
   }
-  const setAsalTempat = (id) => {
+  const setAsalTempat = (id, ruang = null) => {
     setDari(id)
+    setRuanganAsal(ruang)
     setAsalGps(null)
     setKueriAsal('')
     setBukaAsal(false)
@@ -158,6 +160,7 @@ function Peta() {
         jarak: dekat.distance,
         berdasarkanArea: Boolean(tempatGps),
       })
+      setRuanganAsal(null)
       setDari('')
       setBukaAsal(false)
       setStatusGps({ jenis: 'info', pesan: akurasi > 50 ? 'Akurasi GPS rendah, posisimu bisa meleset. Jika ragu, pilih gedung terdekat secara manual.' : '' })
@@ -170,9 +173,14 @@ function Peta() {
 
   const tukar = () => {
     if (!dari || !ke) return
-    setDari(ke)
-    setKe(dari)
-    setRuanganTujuan(null)
+    const prevDari = dari
+    const prevKe = ke
+    const prevRuanganAsal = ruanganAsal
+    const prevRuanganTujuan = ruanganTujuan
+    setDari(prevKe)
+    setKe(prevDari)
+    setRuanganAsal(prevRuanganTujuan)
+    setRuanganTujuan(prevRuanganAsal)
   }
 
   const bagikan = async () => {
@@ -271,6 +279,7 @@ function Peta() {
                 onPilihTujuanTempat={(t) => setTujuanTempat(t.id)}
                 onPilihTujuanRuangan={(r) => setTujuanTempat(r.tempatId, r)}
                 onPilihAsalTempat={(t) => setAsalTempat(t.id)}
+                onPilihAsalRuangan={(r) => setAsalTempat(r.tempatId, r)}
                 onUbahTujuan={() => { setBukaTujuan(true); setKueriTujuan('') }}
                 onBatalUbahTujuan={() => { setBukaTujuan(false); setKueriTujuan('') }}
                 onUbahAsal={() => { setBukaAsal(true); setModeAsal('menu') }}

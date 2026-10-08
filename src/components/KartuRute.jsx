@@ -3,6 +3,7 @@ import { IkonBagikan, IkonInfo } from './Ikon'
 import { formatJarak, KECEPATAN_JALAN, teksLantai, teksMenit } from '../lib/format'
 import { validasiSemuaTempat } from '../lib/routing'
 import { namaTitik } from '../lib/places'
+import { tentukanNavigasiLantai } from '../lib/navigasiLantai'
 
 function Perbandingan({ rute, graphData, indeks }) {
   const [validasi, setValidasi] = useState(null)
@@ -48,6 +49,7 @@ export default function KartuRute({ rute, langkah, tujuan, asal, indeks, graphDa
   const sama = rute.path.length === 1
   const masuk = namaTitik(indeks, rute.targetId)
   const namaTujuan = tujuan.tempat.nama
+  const navigasiLantai = tentukanNavigasiLantai(asal, tujuan)
 
   return (
     <section aria-label="Hasil rute" className="space-y-4">
@@ -66,11 +68,56 @@ export default function KartuRute({ rute, langkah, tujuan, asal, indeks, graphDa
         )}
       </div>
 
+      {/* Kartu informasi ruangan awal jika dipilih */}
+      {asal.ruangan && (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-950">
+          <p className="font-semibold text-emerald-900">Titik berangkat: {asal.ruangan.nama}</p>
+          <p className="text-emerald-800">{asal.tempat.nama} · {teksLantai(asal.ruangan.lantai)}{asal.ruangan.kodeTampil ? ` · kode ${asal.ruangan.kodeTampil}` : ''}</p>
+        </div>
+      )}
+
+      {/* Kartu informasi ruangan tujuan */}
       {tujuan.ruangan && (
         <div className="rounded-xl border border-teal-200 bg-teal-50 p-3 text-sm text-teal-950">
-          <p className="font-semibold">{tujuan.ruangan.nama}</p>
-          <p>{namaTujuan} · {teksLantai(tujuan.ruangan.lantai)}{tujuan.ruangan.kodeTampil ? ` · kode ${tujuan.ruangan.kodeTampil}` : ''}</p>
-          <p className="mt-1 flex gap-1.5 text-teal-900"><span className="mt-0.5 flex-none"><IkonInfo ukuran={16} /></span>Rute berakhir di gedung. Setelah masuk, ikuti papan petunjuk lantai menuju ruangan.</p>
+          <p className="font-semibold text-teal-900">{tujuan.ruangan.nama}</p>
+          <p className="text-teal-800">{namaTujuan} · {teksLantai(tujuan.ruangan.lantai)}{tujuan.ruangan.kodeTampil ? ` · kode ${tujuan.ruangan.kodeTampil}` : ''}</p>
+        </div>
+      )}
+
+      {/* Petunjuk navigasi lantai dan koneksi khusus */}
+      {navigasiLantai.langkah.length > 0 && (
+        <div className="rounded-xl border border-sky-200 bg-sky-50 p-3 text-sm text-sky-950">
+          <p className="flex items-center gap-1.5 font-semibold text-sky-900">
+            <span className="flex-none"><IkonInfo ukuran={16} /></span>
+            {navigasiLantai.jenis.startsWith('koneksi') ? 'Koneksi Antar Gedung:' : 'Petunjuk Navigasi Lantai:'}
+          </p>
+          <ol className="mt-2 list-decimal space-y-1.5 pl-5 font-medium text-sky-950">
+            {navigasiLantai.langkah.map((l, idx) => (
+              <li key={idx} className="leading-snug">
+                {l}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {/* Jika gedung sama & lantai sama */}
+      {navigasiLantai.jenis === 'sama-gedung-sama-lantai' && asal.ruangan && (
+        <div className="rounded-xl border border-teal-200 bg-teal-50 p-3 text-sm text-teal-950">
+          <p className="flex gap-1.5 text-teal-900">
+            <span className="mt-0.5 flex-none"><IkonInfo ukuran={16} /></span>
+            Titik awal dan tujuan berada di lantai yang sama ({teksLantai(tujuan.ruangan.lantai)}). Tidak perlu pindah lantai.
+          </p>
+        </div>
+      )}
+
+      {/* Petunjuk umum jika belum ada langkah khusus lantai */}
+      {tujuan.ruangan && navigasiLantai.langkah.length === 0 && navigasiLantai.jenis !== 'sama-gedung-sama-lantai' && (
+        <div className="rounded-xl border border-teal-200 bg-teal-50 p-3 text-sm text-teal-950">
+          <p className="flex gap-1.5 text-teal-900">
+            <span className="mt-0.5 flex-none"><IkonInfo ukuran={16} /></span>
+            Rute berakhir di gedung. Setelah masuk, ikuti papan petunjuk lantai menuju ruangan.
+          </p>
         </div>
       )}
 

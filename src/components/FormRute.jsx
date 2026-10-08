@@ -61,7 +61,7 @@ export default function FormRute({
   tujuan, asal, bukaTujuan, bukaAsal, modeAsal, setModeAsal,
   kueriTujuan, setKueriTujuan, kueriAsal, setKueriAsal,
   hasilTujuan, hasilAsal, namaTempat, adaJarak,
-  onPilihTujuanTempat, onPilihTujuanRuangan, onPilihAsalTempat,
+  onPilihTujuanTempat, onPilihTujuanRuangan, onPilihAsalTempat, onPilihAsalRuangan,
   onUbahTujuan, onBatalUbahTujuan, onUbahAsal, onBatalUbahAsal, onGps, statusGps, onPilihDiPeta, onTukar,
 }) {
   const refAsal = useRef(null)
@@ -118,8 +118,8 @@ export default function FormRute({
           <KartuPilihan
             judul="A"
             warna="bg-green-600"
-            utama={asal.jenis === 'gps' ? 'Lokasi saya' : asal.tempat.nama}
-            tambahan={asal.jenis === 'gps' ? (asal.berdasarkanArea ? `Berada di area: ${asal.tempat.nama}` : `Terdekat dari jalur: ${asal.tempat.nama} (±${Math.round(asal.jarak)} m)`) : 'Titik awal'}
+            utama={asal.jenis === 'gps' ? 'Lokasi saya' : (asal.ruangan ? asal.ruangan.nama : asal.tempat.nama)}
+            tambahan={asal.jenis === 'gps' ? (asal.berdasarkanArea ? `Berada di area: ${asal.tempat.nama}` : `Terdekat dari jalur: ${asal.tempat.nama} (±${Math.round(asal.jarak)} m)`) : (asal.ruangan ? `${asal.tempat.nama} · ${teksLantai(asal.ruangan.lantai)}` : 'Titik awal')}
             onUbah={onUbahAsal}
             onTukar={tampilTujuan && asal.jenis === 'tempat' ? onTukar : undefined}
           />
@@ -137,17 +137,17 @@ export default function FormRute({
                 <div ref={refAsal}>
                   <KotakCari
                     id="cari-asal"
-                    label="Cari gedung untuk titik awal"
+                    label="Cari gedung atau ruangan untuk titik awal"
                     nilai={kueriAsal}
                     onUbah={setKueriAsal}
-                    placeholder="Cari gedung terdekat darimu"
-                    onEnter={pilihPertama(hasilAsal, onPilihAsalTempat)}
+                    placeholder="Cari gedung atau ruangan"
+                    onEnter={pilihPertama(hasilAsal, onPilihAsalTempat, onPilihAsalRuangan)}
                     autoFokus
                   />
                 </div>
-                <HasilPencarian hasil={hasilAsal} kueri={kueriAsal} namaTempat={namaTempat} onPilihTempat={onPilihAsalTempat} onPilihRuangan={() => {}} onSaran={setKueriAsal} />
+                <HasilPencarian hasil={hasilAsal} kueri={kueriAsal} namaTempat={namaTempat} onPilihTempat={onPilihAsalTempat} onPilihRuangan={onPilihAsalRuangan} onSaran={setKueriAsal} />
                 {!kueriAsal.trim() && (
-                  <p className="text-sm text-slate-700">Lihat sekelilingmu, lalu ketik nama gedung yang paling dekat, misalnya &ldquo;Fisika&rdquo; atau &ldquo;Syawal&rdquo;.</p>
+                  <p className="text-sm text-slate-700">Lihat sekelilingmu, lalu ketik nama gedung atau ruangan di dekatmu.</p>
                 )}
               </>
             ) : (
@@ -162,8 +162,8 @@ export default function FormRute({
                 <button type="button" onClick={() => setModeAsal('cari')} className="flex items-center gap-3 rounded-xl border border-slate-300 bg-white px-3 py-3 text-left hover:border-sky-500 hover:bg-sky-50">
                   <span className="text-sky-800"><IkonCari /></span>
                   <span>
-                    <span className="block font-semibold text-slate-900">Cari gedung</span>
-                    <span className="block text-xs text-slate-600">Ketik nama gedung di dekatmu</span>
+                    <span className="block font-semibold text-slate-900">Cari gedung atau ruangan</span>
+                    <span className="block text-xs text-slate-600">Ketik nama gedung atau ruangan di dekatmu</span>
                   </span>
                 </button>
                 <button type="button" onClick={onPilihDiPeta} className="flex items-center gap-3 rounded-xl border border-slate-300 bg-white px-3 py-3 text-left hover:border-sky-500 hover:bg-sky-50">
