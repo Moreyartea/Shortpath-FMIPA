@@ -2912,6 +2912,29 @@
       "type": "Feature",
       "properties": {
         "id": 121,
+        "asal": 89,
+        "tujuan": 89
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714080654,
+              3.606824909
+            ],
+            [
+              98.714080654,
+              3.606824909
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 122,
         "asal": 42,
         "tujuan": 91
       },
@@ -2934,7 +2957,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 122,
+        "id": 123,
         "asal": 91,
         "tujuan": 88
       },
@@ -2961,7 +2984,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 123,
+        "id": 124,
         "asal": 90,
         "tujuan": 91
       },
@@ -2988,7 +3011,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 124,
+        "id": 125,
         "asal": 51,
         "tujuan": 92
       },
@@ -3011,7 +3034,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 125,
+        "id": 126,
         "asal": 92,
         "tujuan": 48
       },
@@ -3038,7 +3061,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 126,
+        "id": 127,
         "asal": 54,
         "tujuan": 92
       },
@@ -3061,7 +3084,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 127,
+        "id": 128,
         "asal": 63,
         "tujuan": 58
       },
@@ -3084,7 +3107,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 128,
+        "id": 129,
         "asal": 53,
         "tujuan": 17
       },
@@ -3155,7 +3178,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 129,
+        "id": 130,
         "asal": 33,
         "tujuan": 84
       },
@@ -3178,7 +3201,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 130,
+        "id": 131,
         "asal": 82,
         "tujuan": 78
       },
@@ -3201,7 +3224,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 131,
+        "id": 132,
         "asal": 44,
         "tujuan": 52
       },
@@ -3224,7 +3247,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 132,
+        "id": 133,
         "asal": 86,
         "tujuan": 40
       },
@@ -3247,7 +3270,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 133,
+        "id": 134,
         "asal": 40,
         "tujuan": 93
       },
