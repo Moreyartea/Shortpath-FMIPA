@@ -73,7 +73,7 @@ function Peta() {
   const cepat = useMemo(() => pilihanCepat(daftarRuangan, tempat, namaCari), [daftarRuangan])
 
   const asal = useMemo(() => {
-    if (asalGps) return { ...asalGps, jenis: 'gps', tempat: indeks.byTitik.get(asalGps.titikId) }
+    if (asalGps) return { ...asalGps, jenis: 'gps', tempat: indeks.byTitik.get(asalGps.titikId) || null }
     if (dari) return { jenis: 'tempat', tempat: indeks.byId.get(dari), ruangan: ruanganAsal }
     return null
   }, [asalGps, dari, ruanganAsal])

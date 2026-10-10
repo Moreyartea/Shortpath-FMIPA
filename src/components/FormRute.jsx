@@ -118,8 +118,16 @@ export default function FormRute({
           <KartuPilihan
             judul="A"
             warna="bg-green-600"
-            utama={asal.jenis === 'gps' ? 'Lokasi saya' : (asal.ruangan ? asal.ruangan.nama : asal.tempat.nama)}
-            tambahan={asal.jenis === 'gps' ? (asal.berdasarkanArea ? `Berada di area: ${asal.tempat.nama}` : `Terdekat dari jalur: ${asal.tempat.nama} (±${Math.round(asal.jarak)} m)`) : (asal.ruangan ? `${asal.tempat.nama} · ${teksLantai(asal.ruangan.lantai)}` : 'Titik awal')}
+            utama={asal.jenis === 'gps' ? 'Lokasi saya' : (asal.ruangan ? asal.ruangan.nama : (asal.tempat?.nama || 'Titik awal'))}
+            tambahan={
+              asal.jenis === 'gps'
+                ? (asal.tempat
+                    ? (asal.berdasarkanArea
+                        ? `Berada di area: ${asal.tempat.nama}`
+                        : `Terdekat dari jalur: ${asal.tempat.nama} (±${Math.round(asal.jarak)} m)`)
+                    : `Di jalur antar gedung (±${Math.round(asal.jarak)} m dari jalur terdekat)`)
+                : (asal.ruangan ? `${asal.tempat?.nama} · ${teksLantai(asal.ruangan.lantai)}` : 'Titik awal')
+            }
             onUbah={onUbahAsal}
             onTukar={tampilTujuan && asal.jenis === 'tempat' ? onTukar : undefined}
           />

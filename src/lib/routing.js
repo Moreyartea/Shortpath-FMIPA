@@ -74,22 +74,67 @@ export function geometriRute(rute, edgesGeoJson, pointsById) {
 export function langkahRute(rute, indeks, graphData) {
   const { graph, pointsById } = graphData
   const langkah = [{ jenis: 'mulai', teks: `Mulai dari ${namaTitik(indeks, rute.path[0])}`, titikId: rute.path[0] }]
+  if (rute.path.length <= 1) return langkah
+
+  const segmen = []
   for (let i = 0; i < rute.path.length - 1; i += 1) {
     const a = pointsById[rute.path[i]]
     const b = pointsById[rute.path[i + 1]]
     const edge = (graph[rute.path[i]] || []).find((e) => Number(e.edgeId) === Number(rute.edgeIds[i]))
     const jarak = edge ? edge.weight : haversineDistance(a.lat, a.lon, b.lat, b.lon)
-    const arah = namaArah(bearing(a.lat, a.lon, b.lat, b.lon))
-    const terakhir = i === rute.path.length - 2
-    langkah.push({
-      jenis: terakhir ? 'tiba' : 'jalan',
-      teks: `Jalan ke arah ${arah} menuju ${namaTitik(indeks, rute.path[i + 1])}`,
-      arah,
-      jarak,
-      jarakTeks: formatJarak(jarak),
-      titikId: rute.path[i + 1],
-    })
+    const keId = rute.path[i + 1]
+    const adalahPintu = indeks.byTitik.has(Number(keId))
+    segmen.push({ dariId: rute.path[i], keId, jarak, adalahPintu })
   }
+
+  const ambilArah = (dariId, keId) => {
+    const a = pointsById[dariId]
+    const b = pointsById[keId]
+    return namaArah(bearing(a.lat, a.lon, b.lat, b.lon))
+  }
+
+  let currentGroup = {
+    dariId: segmen[0].dariId,
+    keId: segmen[0].keId,
+    jarak: segmen[0].jarak,
+    adalahPintu: segmen[0].adalahPintu,
+  }
+
+  for (let i = 1; i < segmen.length; i += 1) {
+    const s = segmen[i]
+    if (currentGroup.adalahPintu) {
+      const arah = ambilArah(currentGroup.dariId, currentGroup.keId)
+      langkah.push({
+        jenis: 'jalan',
+        teks: `Jalan ke arah ${arah} menuju ${namaTitik(indeks, currentGroup.keId)}`,
+        arah,
+        jarak: currentGroup.jarak,
+        jarakTeks: formatJarak(currentGroup.jarak),
+        titikId: currentGroup.keId,
+      })
+      currentGroup = {
+        dariId: s.dariId,
+        keId: s.keId,
+        jarak: s.jarak,
+        adalahPintu: s.adalahPintu,
+      }
+    } else {
+      currentGroup.jarak += s.jarak
+      currentGroup.keId = s.keId
+      currentGroup.adalahPintu = s.adalahPintu
+    }
+  }
+
+  const arahAkhir = ambilArah(currentGroup.dariId, currentGroup.keId)
+  langkah.push({
+    jenis: 'tiba',
+    teks: `Jalan ke arah ${arahAkhir} menuju ${namaTitik(indeks, currentGroup.keId)}`,
+    arah: arahAkhir,
+    jarak: currentGroup.jarak,
+    jarakTeks: formatJarak(currentGroup.jarak),
+    titikId: currentGroup.keId,
+  })
+
   return langkah
 }
 
