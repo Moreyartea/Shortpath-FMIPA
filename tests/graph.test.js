@@ -104,10 +104,29 @@ describe('Geometri dan langkah rute', () => {
     expect(langkah[0].teks).toContain('Lab. Biologi')
     expect(langkah.at(-1).jenis).toBe('tiba')
     expect(langkah.at(-1).teks).toContain('Gedung Matematika')
-    expect(langkah).toHaveLength(rute.path.length)
+    expect(langkah.length).toBeLessThanOrEqual(rute.path.length)
+    expect(langkah.length).toBeGreaterThanOrEqual(2)
     const jumlah = langkah.reduce((s, l) => s + (l.jarak || 0), 0)
     expect(Math.abs(jumlah - rute.distance)).toBeLessThan(0.01)
     for (const l of langkah.slice(1)) expect(l.teks).toMatch(/arah (utara|timur laut|timur|tenggara|selatan|barat daya|barat laut|barat)/)
     expect(langkah.map((l) => l.teks).join(' ')).not.toMatch(/Titik \d/)
   })
+
+  test('langkahRute: jumlah jarak langkah == rute.distance, dan tidak ada langkah (selain terakhir) yang berakhir di simpul non-pintu', () => {
+    for (const a of tempat) {
+      for (const b of tempat) {
+        if (a.id === b.id) continue
+        const r = hitungRute(graphData, a.titik, b.titik)
+        if (!r.found) continue
+        const langkah = langkahRute(r, indeks, graphData)
+        const totalJarak = langkah.reduce((s, l) => s + (l.jarak || 0), 0)
+        expect(Math.abs(totalJarak - r.distance)).toBeLessThan(0.01)
+        // Langkah jalan (selain langkah pertama mulai dan terakhir tiba) tidak boleh berakhir di simpul non-pintu
+        for (let i = 1; i < langkah.length - 1; i += 1) {
+          expect(indeks.byTitik.has(Number(langkah[i].titikId))).toBe(true)
+        }
+      }
+    }
+  })
 })
+

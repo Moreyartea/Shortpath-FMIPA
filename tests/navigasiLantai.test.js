@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import {
   tentukanNavigasiLantai,
   cekFasilitasLift,
-  cariKoneksiGedung,
 } from '../src/lib/navigasiLantai'
 
 describe('navigasiLantai — Uji Aturan Navigasi Lantai FMIPA (GEMINI.md)', () => {

@@ -40,11 +40,16 @@ describe('Integritas data peta', () => {
 })
 
 describe('Integritas data tempat', () => {
-  test('ID tempat unik; setiap titik jaringan dimiliki tepat satu tempat', () => {
+  test('ID tempat unik; setiap titik pintu tempat ada di jaringan dan simpul jalan non-tempat', () => {
     expect(new Set(tempat.map((t) => t.id)).size).toBe(tempat.length)
-    const semua = tempat.flatMap((t) => t.titik.map(Number)).sort((a, b) => a - b)
+    const semuaTitikTempat = tempat.flatMap((t) => t.titik.map(Number)).sort((a, b) => a - b)
     const idTitik = koordinat.features.map((f) => Number(f.properties.id)).sort((a, b) => a - b)
-    expect(semua).toEqual(idTitik)
+
+    expect(idTitik).toEqual(expect.arrayContaining(semuaTitikTempat))
+    expect(new Set(semuaTitikTempat).size).toBe(semuaTitikTempat.length)
+    const titikTempatSet = new Set(semuaTitikTempat)
+    const simpulJalan = idTitik.filter((id) => !titikTempatSet.has(id))
+    expect(simpulJalan.length).toBeGreaterThan(0)
   })
 
   test('setiap poligon dipakai tepat satu tempat dan sebaliknya', () => {

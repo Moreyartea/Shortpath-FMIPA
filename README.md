@@ -20,7 +20,7 @@ Jalur terpendek dihitung dengan algoritma **Dijkstra** (utama) dan **A\*** (pemb
 ```bash
 npm install
 npm run dev        # pengembangan, http://localhost:5173
-npm test           # 92 tes: data, algoritma, pencarian, tampilan
+npm test           # 114 tes: data, algoritma, pencarian, tampilan
 npm run lint
 npm run build      # hasil di folder dist (statis, tanpa server)
 ```
@@ -31,8 +31,8 @@ Aplikasi sepenuhnya statis: data peta dan ruangan dibundel bersama aplikasi, jad
 
 | Folder/berkas | Isi |
 |---|---|
-| `src/data/koordinat_fmipa.geojson` | Titik jaringan jalan (simpul) |
-| `src/data/edges_fmipa.geojson` | Jalur jalan kaki (sisi), digambar di QGIS |
+| `src/data/koordinat_fmipa.geojson` | Titik jaringan jalan: 93 simpul (18 pintu gedung + 75 persimpangan jalur) |
+| `src/data/edges_fmipa.geojson` | Jalur jalan kaki: 133 ruas (MultiLineString), digambar di QGIS |
 | `src/data/gedung_fmipa.geojson` | Poligon gedung untuk tampilan peta |
 | `src/data/tempat.json` | **Sumber tunggal** daftar gedung: nama, kelompok, kode gedung kampus, titik jaringan, poligon |
 | `src/data/rooms.json` | Data ruangan bawaan (dipakai jika Supabase belum diisi) |
@@ -41,12 +41,19 @@ Aplikasi sepenuhnya statis: data peta dan ruangan dibundel bersama aplikasi, jad
 | `src/lib/search.js`, `hasilCari.js` | Pencarian, sinonim, saran ejaan, pengurutan hasil |
 | `src/lib/rooms.js`, `places.js` | Model ruangan dan tempat |
 | `src/components/` | Tampilan |
+| `scripts/bangun-jaringan.mjs` | Skrip noding & pembangun topologi jaringan dari data mentah QGIS |
 | `supabase/schema.sql` | Tabel, keamanan (RLS), fungsi impor |
 | `tests/` | Pengujian |
 
 ## Menambah data
 
 **Gedung baru**: (1) gambar poligonnya di `gedung_fmipa.geojson`, (2) tambahkan titik dan jalurnya di `koordinat_fmipa.geojson` dan `edges_fmipa.geojson` (ID jalur harus unik), (3) tambahkan satu entri di `tempat.json`. Jalankan `npm test`: tes integritas data akan memberi tahu jika ada titik yang tidak dimiliki tempat, poligon yang tidak terpakai, ID ganda, atau jaringan yang terputus.
+
+**Membangun ulang jaringan jalur**: Jika ada garis tengah pejalan kaki baru yang diekspor dari QGIS ke `scripts/data-mentah/edges_raw.geojson`:
+```bash
+node scripts/bangun-jaringan.mjs          # Mode kering (dry-run, validasi topologi & laporan)
+node scripts/bangun-jaringan.mjs --tulis  # Mode tulis (mencadangkan ke scripts/cadangan/ lalu menulis src/data/)
+```
 
 **Ruangan baru**: lewat halaman admin (`#/admin`, butuh Supabase) atau dengan menambah baris di `rooms.json`. Kode ruangan mengikuti pola kampus `gedung.lantai.nomor` (mis. `001.1.12`).
 

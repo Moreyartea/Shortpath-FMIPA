@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { graphData, indeks, ruangan, tempat } from './helpers'
+import { graphData, indeks, ruangan, tempat, poligon } from './helpers'
 import { kategoriDariNama, normalisasiRuangan, petaKodeKeTempat, ruanganPerLantai, ringkasanIsi, kunciRuangan, cariRuanganDariKunci } from '../src/lib/rooms'
 import { namaTitik, posisiRelatif, ringkasOrientasi, tempatTerhubung } from '../src/lib/places'
 import { bearing, namaArah, pusatPoligon } from '../src/lib/geo'

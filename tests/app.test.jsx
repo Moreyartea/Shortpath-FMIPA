@@ -3,7 +3,21 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { cleanup, render, screen, within, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { graphData } from './helpers'
+import { graphData, indeks, poligon, tempat } from './helpers'
+import { findPlaceContainingPoint, findNearestPoint, JARAK_DI_KAMPUS_M } from '../src/lib/gps'
+
+vi.mock('../src/lib/supabase', () => ({
+  supabaseConfig: null,
+  isSupabaseConfigured: () => false,
+  getSession: () => null,
+  listRooms: vi.fn().mockResolvedValue([]),
+  signIn: vi.fn(),
+  signOut: vi.fn(),
+  insertRoom: vi.fn(),
+  updateRoom: vi.fn(),
+  deleteRoom: vi.fn(),
+  bulkUpsertRooms: vi.fn(),
+}))
 
 vi.mock('../src/components/MapView', () => ({
   default: (p) => (
@@ -171,10 +185,55 @@ describe('Lokasi saya (GPS)', () => {
     render(<App />)
     await sampai(u)
     await u.click(screen.getByRole('button', { name: /Gunakan lokasi saya/ }))
-    expect(await screen.findByText(/Terdekat dari jalur: Gedung Fisika/)).toBeTruthy()
+    expect(await screen.findByText(/Berada di area: Gedung Fisika/)).toBeTruthy()
     await screen.findByRole('region', { name: 'Hasil rute' })
     expect(screen.getByText(/Posisi GPS bisa meleset/)).toBeTruthy()
     expect(window.location.search).toBe('?ke=matematika') // lokasi pribadi tidak masuk tautan
+  })
+
+  test('GPS di dekat simpul persimpangan: tidak crash dan rute tetap dihitung', async () => {
+    const u = userEvent.setup()
+
+    // 1. Ambil simpul yang bukan pintu gedung (!indeks.byTitik.has(id))
+    let simpulPersimpangan = null
+    let titikUji = null
+    let titikDekat = null
+    let jarakDekat = 0
+
+    for (const point of Object.values(graphData.pointsById)) {
+      if (indeks.byTitik.has(point.id)) continue
+      // Geser sedikit (sekitar 1 meter)
+      const calon = { lat: point.lat + 0.00001, lon: point.lon }
+      const diGedung = findPlaceContainingPoint(calon, poligon, tempat)
+      if (diGedung !== null) continue
+      const dekat = findNearestPoint(calon, graphData.pointsById)
+      if (dekat && !indeks.byTitik.has(dekat.id) && dekat.distance < JARAK_DI_KAMPUS_M) {
+        simpulPersimpangan = point
+        titikUji = calon
+        titikDekat = dekat
+        jarakDekat = dekat.distance
+        break
+      }
+    }
+
+    expect(simpulPersimpangan).not.toBeNull()
+    expect(findPlaceContainingPoint(titikUji, poligon, tempat)).toBeNull()
+    expect(!indeks.byTitik.has(titikDekat.id)).toBe(true)
+    expect(jarakDekat).toBeLessThan(JARAK_DI_KAMPUS_M)
+
+    // 2. Render UI
+    aturGps({ coords: { latitude: titikUji.lat, longitude: titikUji.lon, accuracy: 5 } })
+    render(<App />)
+    await sampai(u)
+    await u.click(screen.getByRole('button', { name: /Gunakan lokasi saya/ }))
+
+    // 3. Verifikasi teks fallback: "Di jalur antar gedung (±N m dari jalur terdekat)"
+    const regexFallback = new RegExp(`Di jalur antar gedung \\(±${Math.round(jarakDekat)} m dari jalur terdekat\\)`)
+    expect(await screen.findByText(regexFallback)).toBeTruthy()
+
+    // 4. Verifikasi rute tetap dihitung tanpa crash
+    await screen.findByRole('region', { name: 'Hasil rute' })
+    expect(screen.getByText(/Posisi GPS bisa meleset/)).toBeTruthy()
   })
 
   test('lokasi jauh di luar kampus: tidak dipakai, pengguna diarahkan memilih manual', async () => {
