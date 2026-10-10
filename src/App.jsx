@@ -82,7 +82,7 @@ function Peta() {
 
   const rute = useMemo(() => (titikAsal.length && tujuan ? hitungRute(graphData, titikAsal, tujuan.tempat.titik) : null), [titikAsal, tujuan])
   const garisRute = useMemo(() => (rute?.found ? geometriRute(rute, edges, graphData.pointsById) : null), [rute])
-  const langkah = useMemo(() => (rute?.found ? langkahRute(rute, indeks, graphData) : []), [rute])
+  const langkah = useMemo(() => (rute?.found ? langkahRute(rute, indeks, graphData, { edges, poligon, tempat }) : []), [rute])
   const jarakTempat = useMemo(() => jarakKeSemuaTempat(graphData, titikAsal, indeks), [titikAsal])
 
   const hasilTujuan = useMemo(
