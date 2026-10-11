@@ -535,7 +535,25 @@ export function susunPetunjukRute({
     const belokan = tentukanBelokan(bSebelum, bLangkah)
     bSebelum = bLangkah
 
-    // Penanda
+    // Cek apakah langkah berakhir di pintu tempat
+    // Teks "menuju <nama>" hanya untuk langkah yang berakhir di pintu tempat
+    let pintuTujuan = null
+    for (const [sP, t] of pintuTempatMap.entries()) {
+      if (Math.abs(sP - sAkhir) < 2.0) {
+        pintuTujuan = t
+        break
+      }
+    }
+    if (isTerakhir && !pintuTujuan && tempatTujuan) {
+      pintuTujuan = tempatTujuan
+    }
+
+    // Penanda: kecualikan tempat tujuan langkah agar tidak muncul "lewat selasar X menuju X"
+    const penandaTempatDikecualikan = new Set(tempatDikecualikan)
+    if (pintuTujuan) {
+      penandaTempatDikecualikan.add(pintuTujuan.id)
+    }
+
     const penanda = cariPenandaLangkah({
       garis,
       distKumulatif,
@@ -543,7 +561,7 @@ export function susunPetunjukRute({
       sAkhir,
       poligonGeoJson: poligon,
       daftarTempat: tempat,
-      tempatDikecualikan,
+      tempatDikecualikan: penandaTempatDikecualikan,
     })
 
     // Tindakan dasar
@@ -558,21 +576,11 @@ export function susunPetunjukRute({
       aksi = `Lanjut ke arah ${arahLangkah}`
     }
 
-    // Tambah penanda jika ada
-    let teksLangkah = penanda ? `${aksi} ${penanda.teks}` : aksi
-
-    // Cek apakah langkah berakhir di pintu tempat
-    // Teks "menuju <nama>" hanya untuk langkah yang berakhir di pintu tempat
-    let pintuTujuan = null
-    for (const [sP, t] of pintuTempatMap.entries()) {
-      if (Math.abs(sP - sAkhir) < 2.0) {
-        pintuTujuan = t
-        break
-      }
-    }
-    if (isTerakhir && !pintuTujuan && tempatTujuan) {
-      pintuTujuan = tempatTujuan
-    }
+    // Tambah penanda jika ada, guard penanda tidak boleh sama dengan tempat tujuan langkah
+    const penandaValid =
+      penanda &&
+      (!pintuTujuan || (penanda.tempat?.id !== pintuTujuan.id && !penanda.teks.includes(pintuTujuan.nama)))
+    let teksLangkah = penandaValid ? `${aksi} ${penanda.teks}` : aksi
 
     if (pintuTujuan) {
       teksLangkah = `${teksLangkah} menuju ${pintuTujuan.nama}`
@@ -586,14 +594,41 @@ export function susunPetunjukRute({
       teks: teksLangkah,
       arah: arahLangkah,
       belokan,
-      penanda: penanda?.teks || null,
+      penanda: penandaValid ? penanda.teks : null,
       jarak: jarakLangkah,
       jarakTeks: formatJarak(jarakLangkah),
       titikId,
     })
   }
 
-  return langkah
+  // Gabungkan langkah berurutan dengan penanda identik
+  const langkahGabung = [langkah[0]]
+  for (let idx = 1; idx < langkah.length; idx += 1) {
+    const curr = { ...langkah[idx] }
+    const prev = langkahGabung[langkahGabung.length - 1]
+
+    if (
+      prev.jenis === 'jalan' &&
+      curr.jenis === 'jalan' &&
+      prev.penanda &&
+      curr.penanda &&
+      prev.penanda === curr.penanda
+    ) {
+      prev.jarak += curr.jarak
+      prev.jarakTeks = formatJarak(prev.jarak)
+      prev.titikId = curr.titikId
+      const matchMenuju = curr.teks.match(/ menuju (.+)$/)
+      if (matchMenuju) {
+        prev.teks = `${prev.teks.replace(/ menuju .+$/, '')} menuju ${matchMenuju[1]}`
+      } else {
+        prev.teks = prev.teks.replace(/ menuju .+$/, '')
+      }
+    } else {
+      langkahGabung.push(curr)
+    }
+  }
+
+  return langkahGabung
 }
 
 /** Cari node id terdekat di rute.path untuk jarak s */

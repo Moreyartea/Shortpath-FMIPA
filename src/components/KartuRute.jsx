@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { IkonBagikan, IkonInfo } from './Ikon'
 import { formatJarak, KECEPATAN_JALAN, teksLantai, teksMenit } from '../lib/format'
 import { validasiSemuaTempat } from '../lib/routing'
 import { namaTitik } from '../lib/places'
 import { tentukanNavigasiLantai } from '../lib/navigasiLantai'
 
-function Perbandingan({ rute, graphData, indeks }) {
+function Perbandingan({ rute, graphData, indeks, aturan }) {
   const [validasi, setValidasi] = useState(null)
   const p = rute.perbandingan
   return (
-    <details className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-800" onToggle={(e) => e.currentTarget.open && !validasi && setValidasi(validasiSemuaTempat(graphData, indeks))}>
+    <details className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-800" onToggle={(e) => e.currentTarget.open && !validasi && setValidasi(validasiSemuaTempat(graphData, indeks, aturan))}>
       <summary className="cursor-pointer font-semibold">Untuk laporan: bandingkan algoritma</summary>
       <table className="mt-3 w-full text-left text-xs">
         <thead className="text-slate-600">
@@ -36,8 +36,43 @@ function Perbandingan({ rute, graphData, indeks }) {
   )
 }
 
-export default function KartuRute({ rute, langkah, tujuan, asal, indeks, graphData, onBagikan, pesanBagikan }) {
-  if (!rute.found) {
+export default function KartuRute({ rute, ruteTanpaAturan, aturan, langkah, tujuan, asal, indeks, graphData, onBagikan, pesanBagikan }) {
+  const aturanBerpengaruh = useMemo(() => {
+    if (!rute || !rute.found || !ruteTanpaAturan || !ruteTanpaAturan.found || !aturan) return []
+
+    const alasan = []
+
+    // 1. Alasan pintuTertutup: hanya bila ruteTanpaAturan.targetId (atau startId) === id pintu itu DAN berbeda dari rute beraturan
+    for (const p of aturan.pintuTertutup || []) {
+      const pId = Number(p.id)
+      const targetKenaPintu = ruteTanpaAturan.targetId === pId && rute.targetId !== ruteTanpaAturan.targetId
+      const startKenaPintu = ruteTanpaAturan.startId === pId && rute.startId !== ruteTanpaAturan.startId
+      if (targetKenaPintu || startKenaPintu) {
+        alasan.push(p.alasan)
+      }
+    }
+
+    // 2. Alasan titikUjungSaja: hanya bila ruteTanpaAturan.path.slice(1, -1) memuat titik itu
+    const intermediateTanpaAturan = ruteTanpaAturan.path.slice(1, -1)
+    for (const u of aturan.titikUjungSaja || []) {
+      const uId = Number(u.id)
+      if (intermediateTanpaAturan.includes(uId)) {
+        alasan.push(u.alasan)
+      }
+    }
+
+    return [...new Set(alasan)]
+  }, [rute, ruteTanpaAturan, aturan])
+
+  if (!rute || !rute.found) {
+    if (rute?.alasan === 'titik-tertutup') {
+      return (
+        <div role="alert" className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <p className="font-semibold">Akses ke tempat ini ditutup</p>
+          <p className="mt-1">Pintu masuk ke tempat ini sedang tidak dibuka sehingga rute tidak dapat dibuat.</p>
+        </div>
+      )
+    }
     return (
       <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-900">
         <p className="font-semibold">Rute tidak ditemukan</p>
@@ -67,6 +102,18 @@ export default function KartuRute({ rute, langkah, tujuan, asal, indeks, graphDa
           </>
         )}
       </div>
+
+      {/* Kartu informasi penyesuaian aturan jika aturan mengubah rute */}
+      {aturanBerpengaruh.length > 0 && (
+        <div className="rounded-xl border border-sky-200 bg-sky-50 p-3 text-xs text-sky-950">
+          <p className="font-semibold text-sky-900">Penyesuaian Jalur:</p>
+          <ul className="mt-1 list-disc pl-4 space-y-0.5 text-sky-900">
+            {aturanBerpengaruh.map((teks, idx) => (
+              <li key={idx}>{teks}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Kartu informasi ruangan awal jika dipilih */}
       {asal.ruangan && (
@@ -149,7 +196,7 @@ export default function KartuRute({ rute, langkah, tujuan, asal, indeks, graphDa
         {asal.jenis === 'gps' ? ' Posisi GPS bisa meleset beberapa meter, terutama di antara gedung.' : ''}
       </p>
 
-      <Perbandingan rute={rute} graphData={graphData} indeks={indeks} />
+      <Perbandingan rute={rute} graphData={graphData} indeks={indeks} aturan={aturan} />
     </section>
   )
 }

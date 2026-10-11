@@ -3,15 +3,27 @@
 import { haversineDistance } from './graph'
 import { bearing, namaArah, pusatTitik } from './geo'
 
-export function bangunIndeksTempat(daftar, pointsById) {
-  const byId = new Map(daftar.map((t) => [t.id, t]))
+export function bangunIndeksTempat(daftar, pointsById, aturan = null) {
+  const pintuTertutupSet = new Set((aturan?.pintuTertutup || []).map((p) => Number(p.id)))
+
+  const daftarNormal = daftar.map((t) => {
+    const titikSemua = t.titikSemua || [...t.titik]
+    const titik = titikSemua.filter((id) => !pintuTertutupSet.has(Number(id)))
+    return { ...t, titikSemua, titik }
+  })
+
+  const byId = new Map(daftarNormal.map((t) => [t.id, t]))
   const byTitik = new Map()
-  for (const t of daftar) for (const id of t.titik) byTitik.set(Number(id), t)
+  for (const t of daftarNormal) {
+    for (const id of t.titik) {
+      byTitik.set(Number(id), t)
+    }
+  }
   const pusat = new Map(
-    daftar.map((t) => [t.id, pusatTitik(t.titik.map((id) => pointsById[id]).filter(Boolean))])
+    daftarNormal.map((t) => [t.id, pusatTitik((t.titik.length ? t.titik : t.titikSemua).map((id) => pointsById[id]).filter(Boolean))])
   )
   const titikJaringan = new Set(Object.keys(pointsById || {}).map(Number))
-  return { daftar, byId, byTitik, pusat, titikJaringan }
+  return { daftar: daftarNormal, byId, byTitik, pusat, titikJaringan }
 }
 
 /** Nama yang ramah untuk satu titik jaringan (mis. "Lobi Utara Gedung Syawal"). */

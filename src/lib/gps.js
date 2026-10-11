@@ -86,9 +86,11 @@ export function findPlaceContainingPoint(position, polygonGeoJson, daftarTempat)
   return null
 }
 
-export function findNearestPoint(position, pointsById) {
+export function findNearestPoint(position, pointsById, { kecualikanTitik = [] } = {}) {
+  const skip = new Set(kecualikanTitik.map(Number))
   let nearest = null
   for (const point of Object.values(pointsById)) {
+    if (skip.has(Number(point.id))) continue
     const distance = haversineDistance(position.lat, position.lon, point.lat, point.lon)
     if (!nearest || distance < nearest.distance) nearest = { ...point, distance }
   }

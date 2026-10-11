@@ -1,12 +1,13 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { batas, bentuk, edges, graphData, indeks, poligon, tempat } from './data'
+import { batas, bentuk, edges, graphData, poligon, tempat, ruanganLokal } from './data'
+import aturanJalur from './data/aturanJalur.json'
 import { useRuangan } from './hooks/useRuangan'
 import { findNearestPoint, findNearestPointForPlace, findPlaceContainingPoint, getCurrentPosition, JARAK_DI_KAMPUS_M, pesanGalatGps } from './lib/gps'
 import { susunHasil, pilihanCepat } from './lib/hasilCari'
 import { bangunKosakata } from './lib/search'
 import { geometriRute, hitungRute, jarakKeSemuaTempat, langkahRute } from './lib/routing'
 import { cariRuanganDariKunci, kunciRuangan } from './lib/rooms'
-import { ringkasOrientasi } from './lib/places'
+import { bangunIndeksTempat, ringkasOrientasi } from './lib/places'
 import { bacaUrl, tulisUrl } from './lib/urlState'
 import DetailTempat from './components/DetailTempat'
 import FormRute from './components/FormRute'
@@ -15,13 +16,13 @@ import Jelajahi from './components/Jelajahi'
 import KartuRute from './components/KartuRute'
 import MapView from './components/MapView'
 import Panduan from './components/Panduan'
-import { ruanganLokal } from './data'
 
 const AdminPage = lazy(() => import('./components/AdminPage'))
 const KUNCI_PANDUAN = 'fmipa_panduan_dilihat'
 const TINGGI_PANEL = { min: 'h-[12rem]', mid: 'h-[56dvh]', max: 'h-[90dvh]' }
 const URUTAN_PANEL = ['min', 'mid', 'max']
 
+const indeks = bangunIndeksTempat(tempat, graphData.pointsById, aturanJalur)
 const namaCari = new Map(tempat.map((t) => [t.id, `${t.nama} ${t.namaLengkap || ''}`]))
 const namaTampil = new Map(tempat.map((t) => [t.id, t.nama]))
 const orientasi = ringkasOrientasi(indeks, graphData.graph)
@@ -78,12 +79,31 @@ function Peta() {
     return null
   }, [asalGps, dari, ruanganAsal])
   const tujuan = useMemo(() => (ke ? { tempat: indeks.byId.get(ke), ruangan: ruanganTujuan } : null), [ke, ruanganTujuan])
-  const titikAsal = useMemo(() => (asalGps ? [asalGps.titikId] : dari ? indeks.byId.get(dari).titik : []), [asalGps, dari])
+  const titikAsal = useMemo(() => (asalGps ? [asalGps.titikId] : dari ? (indeks.byId.get(dari)?.titik || []) : []), [asalGps, dari])
 
-  const rute = useMemo(() => (titikAsal.length && tujuan ? hitungRute(graphData, titikAsal, tujuan.tempat.titik) : null), [titikAsal, tujuan])
+  const rute = useMemo(() => {
+    if (!tujuan) return null
+    if (tujuan.tempat && tujuan.tempat.titik.length === 0) {
+      return { found: false, alasan: 'titik-tertutup' }
+    }
+    if (asal?.jenis === 'tempat' && asal.tempat && asal.tempat.titik.length === 0) {
+      return { found: false, alasan: 'titik-tertutup' }
+    }
+    if (!titikAsal.length || !tujuan.tempat?.titik?.length) return null
+    return hitungRute(graphData, titikAsal, tujuan.tempat.titik, aturanJalur)
+  }, [titikAsal, tujuan, asal])
+
+  const ruteTanpaAturan = useMemo(() => {
+    if (!tujuan || !titikAsal.length) return null
+    const asalSemua = asalGps ? [asalGps.titikId] : (indeks.byId.get(dari)?.titikSemua || indeks.byId.get(dari)?.titik || [])
+    const tujuanSemua = tujuan.tempat?.titikSemua || tujuan.tempat?.titik || []
+    if (!asalSemua.length || !tujuanSemua.length) return null
+    return hitungRute(graphData, asalSemua, tujuanSemua, null)
+  }, [titikAsal, tujuan, asalGps, dari])
+
   const garisRute = useMemo(() => (rute?.found ? geometriRute(rute, edges, graphData.pointsById) : null), [rute])
   const langkah = useMemo(() => (rute?.found ? langkahRute(rute, indeks, graphData, { edges, poligon, tempat }) : []), [rute])
-  const jarakTempat = useMemo(() => jarakKeSemuaTempat(graphData, titikAsal, indeks), [titikAsal])
+  const jarakTempat = useMemo(() => jarakKeSemuaTempat(graphData, titikAsal, indeks, aturanJalur), [titikAsal])
 
   const hasilTujuan = useMemo(
     () => susunHasil({ kueri: kueriTujuan, daftarTempat: tempat, ruangan: daftarRuangan, namaTempat: namaCari, jarakTempat, kosakata }),
@@ -146,7 +166,7 @@ function Peta() {
       const akurasi = pos.coords.accuracy || 0
       const tempatGps = findPlaceContainingPoint(lokasi, poligon, tempat)
       const titikTempat = tempatGps ? findNearestPointForPlace(lokasi, tempatGps, graphData.pointsById) : null
-      const dekat = titikTempat || findNearestPoint(lokasi, graphData.pointsById)
+      const dekat = titikTempat || findNearestPoint(lokasi, graphData.pointsById, { kecualikanTitik: aturanJalur.titikUjungSaja?.map((u) => u.id) || [] })
       setPosisiPengguna({ ...lokasi, akurasi })
       if (!dekat || dekat.distance > JARAK_DI_KAMPUS_M) {
         setStatusGps({ jenis: 'galat', pesan: `Lokasimu sekitar ${Math.round(dekat?.distance ?? 0)} m dari jalur terdekat, sepertinya di luar kawasan FMIPA. Pilih titik awal secara manual.` })
@@ -319,7 +339,7 @@ function Peta() {
               )}
 
               {rute && tujuan && asal && !bukaTujuan && (
-                <KartuRute rute={rute} langkah={langkah} tujuan={tujuan} asal={asal} indeks={indeks} graphData={graphData} onBagikan={bagikan} pesanBagikan={pesanBagikan} />
+                <KartuRute rute={rute} ruteTanpaAturan={ruteTanpaAturan} aturan={aturanJalur} langkah={langkah} tujuan={tujuan} asal={asal} indeks={indeks} graphData={graphData} onBagikan={bagikan} pesanBagikan={pesanBagikan} />
               )}
             </div>
           )}
@@ -331,6 +351,7 @@ function Peta() {
                 indeks={indeks}
                 graph={graphData.graph}
                 ruangan={daftarRuangan}
+                aturan={aturanJalur}
                 onKembali={() => setDetail(null)}
                 onBuka={setDetail}
                 onRuteKe={(id) => setTujuanTempat(id)}

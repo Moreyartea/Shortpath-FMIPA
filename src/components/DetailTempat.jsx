@@ -6,13 +6,30 @@ import { posisiRelatif, tempatTerhubung } from '../lib/places'
 import { ringkasanIsi, ruanganPerLantai } from '../lib/rooms'
 import { kebutuhanKueri, cocokKebutuhan, normalizeText } from '../lib/search'
 
-export default function DetailTempat({ tempat, indeks, graph, ruangan, onKembali, onRuteKe, onRuteDari, onBuka, onPilihRuangan }) {
+export default function DetailTempat({ tempat, indeks, graph, ruangan, aturan, onKembali, onRuteKe, onRuteDari, onBuka, onPilihRuangan }) {
   const [saring, setSaring] = useState('')
   const isi = useMemo(() => ringkasanIsi(ruangan, tempat.id), [ruangan, tempat.id])
   const lantai = useMemo(() => ruanganPerLantai(ruangan, tempat.id), [ruangan, tempat.id])
   const terhubung = useMemo(() => tempatTerhubung(indeks, graph, tempat.id), [indeks, graph, tempat.id])
   const pusat = indeks.daftar.find((t) => t.kelompok === 'pusat')
   const rel = pusat && pusat.id !== tempat.id ? posisiRelatif(indeks, pusat.id, tempat.id) : null
+
+  const semuaTitik = useMemo(() => tempat.titikSemua || tempat.titik || [], [tempat])
+  const catatanAturan = useMemo(() => {
+    if (!aturan) return []
+    const catatan = []
+    for (const p of aturan.pintuTertutup || []) {
+      if (semuaTitik.includes(Number(p.id))) {
+        catatan.push({ jenis: 'tertutup', teks: p.alasan })
+      }
+    }
+    for (const u of aturan.titikUjungSaja || []) {
+      if (semuaTitik.includes(Number(u.id))) {
+        catatan.push({ jenis: 'ujung', teks: u.alasan })
+      }
+    }
+    return catatan
+  }, [aturan, semuaTitik])
 
   const kebutuhan = kebutuhanKueri(saring)
   const tersaring = useMemo(
@@ -39,6 +56,23 @@ export default function DetailTempat({ tempat, indeks, graph, ruangan, onKembali
           {tempat.gedung.length > 0 && ` Kode gedung ${tempat.gedung.map((g) => g.kode).join(' dan ')}.`}
         </p>
       </header>
+
+      {catatanAturan.length > 0 && (
+        <div className="space-y-1.5" role="note" aria-label="Catatan akses tempat">
+          {catatanAturan.map((c, i) => (
+            <div
+              key={i}
+              className={`rounded-xl border p-3 text-xs leading-relaxed ${
+                c.jenis === 'tertutup'
+                  ? 'border-amber-200 bg-amber-50 text-amber-900'
+                  : 'border-sky-200 bg-sky-50 text-sky-900'
+              }`}
+            >
+              <b>{c.jenis === 'tertutup' ? 'Akses Pintu:' : 'Aturan Akses:'}</b> {c.teks}
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-2">
         <button type="button" onClick={() => onRuteKe(tempat.id)} className="rounded-xl bg-sky-800 px-3 py-3 font-semibold text-white hover:bg-sky-900">Rute ke sini</button>
