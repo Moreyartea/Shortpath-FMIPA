@@ -12,6 +12,9 @@ export const poligon = baca('../src/data/gedung_fmipa.geojson')
 export const tempat = baca('../src/data/tempat.json')
 export const ruanganMentah = baca('../src/data/rooms.json')
 
+export const aturan = baca('../src/data/aturanJalur.json')
 export const graphData = buildGraph(koordinat, edges)
-export const indeks = bangunIndeksTempat(tempat, graphData.pointsById)
+export const indeks = bangunIndeksTempat(tempat, graphData.pointsById, aturan)
+export const indeksTanpaAturan = bangunIndeksTempat(tempat, graphData.pointsById)
 export const ruangan = normalisasiSemua(ruanganMentah, tempat)
+

@@ -132,6 +132,7 @@ describe('Saran koreksi ejaan', () => {
 
 describe('Tempat terhubung', () => {
   test('Syawal hanya dipakai sebagai kata kunci tempat, bukan gedung lain', () => {
-    expect(indeks.byId.get('syawal').titik).toEqual([5, 6, 7, 8])
+    expect(indeks.byId.get('syawal').titik).toEqual([5, 6, 8])
+    expect(indeks.byId.get('syawal').titikSemua).toEqual([5, 6, 7, 8])
   })
 })

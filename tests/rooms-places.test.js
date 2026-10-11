@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { graphData, indeks, ruangan, tempat, poligon } from './helpers'
+import { graphData, indeks, indeksTanpaAturan, ruangan, tempat, poligon } from './helpers'
 import { kategoriDariNama, normalisasiRuangan, petaKodeKeTempat, ruanganPerLantai, ringkasanIsi, kunciRuangan, cariRuanganDariKunci } from '../src/lib/rooms'
 import { namaTitik, posisiRelatif, ringkasOrientasi, tempatTerhubung } from '../src/lib/places'
 import { bearing, namaArah, pusatPoligon } from '../src/lib/geo'
@@ -70,7 +70,8 @@ describe('Kategori dan normalisasi ruangan', () => {
 
 describe('Tempat, arah, dan orientasi', () => {
   test('nama titik ramah pengguna', () => {
-    expect(namaTitik(indeks, 7)).toBe('Lobi Utara Gedung Syawal')
+    expect(namaTitik(indeksTanpaAturan, 7)).toBe('Lobi Utara Gedung Syawal')
+    expect(namaTitik(indeks, 7)).toBe('persimpangan jalur')
     expect(namaTitik(indeks, 1)).toBe('Gedung Fisika')
     expect(namaTitik(indeks, 999)).toBe('Titik 999')
   })
