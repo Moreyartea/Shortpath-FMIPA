@@ -32,6 +32,9 @@ const LON0 = 98.7150
 const METERS_PER_LAT = 110540.0
 const METERS_PER_LON = 111320.0 * Math.cos((LAT0 * Math.PI) / 180.0)
 
+// Konstanta ambang batas pemangkasan ruas mikro buntu (meter)
+const MIN_PANJANG_RUAS = 0.25
+
 /** Konversi [lon, lat] ke [x, y] meter relatif dari titik asal lokal */
 function toLocalMeters([lon, lat]) {
   return [
@@ -51,6 +54,20 @@ function toGeoCoordinates([x, y]) {
 /** Jarak Euclidean dalam meter */
 function distanceMeters([x1, y1], [x2, y2]) {
   return Math.hypot(x1 - x2, y1 - y2)
+}
+
+/** Menghitung panjang geometri ruas dalam meter menggunakan proyeksi planar lokal */
+function hitungPanjangRuasGeo(geometry) {
+  let total = 0
+  const lines = geometry.type === 'MultiLineString' ? geometry.coordinates : [geometry.coordinates]
+  for (const line of lines) {
+    for (let i = 1; i < line.length; i += 1) {
+      const m1 = toLocalMeters(line[i - 1])
+      const m2 = toLocalMeters(line[i])
+      total += distanceMeters(m1, m2)
+    }
+  }
+  return total
 }
 
 /**
@@ -313,7 +330,7 @@ function prosesJaringan(rawEdges, refKoordinat) {
 
   // 7. Keputusan 5: Pertahankan koordinat pintu 1-18 persis seperti saat ini.
   // Buat simpul unik. Pintu 1-18 didaftarkan lebih dahulu.
-  const nodes = []
+  let nodes = []
   doorPoints.forEach((d) => {
     nodes.push({
       id: d.id,
@@ -351,7 +368,7 @@ function prosesJaringan(rawEdges, refKoordinat) {
   }
 
   // 8. Bentuk daftar sisi (edges)
-  const edges = []
+  let edges = []
   currentLines.forEach((lineObj) => {
     const coordsM = lineObj.coords
     const nodeAsal = getOrCreateNode(coordsM[0])
@@ -380,7 +397,68 @@ function prosesJaringan(rawEdges, refKoordinat) {
     })
   })
 
-  // 9. Analisis Graf: Derajat, Komponen, dan Pintu Tersambung
+  // Catat jumlah sebelum pemangkasan ruas mikro
+  const jumlahSimpulSebelumPangkas = nodes.length
+  const jumlahRuasSebelumPangkas = edges.length
+
+  // 9. Pemangkasan ruas mikro buntu (< MIN_PANJANG_RUAS dan salah satu ujungnya simpul derajat 1 bukan pintu)
+  const laporanRuasMikroDibuang = []
+  let pangkasBerubah = true
+
+  while (pangkasBerubah) {
+    pangkasBerubah = false
+
+    const deg = {}
+    nodes.forEach((n) => {
+      deg[n.id] = 0
+    })
+    edges.forEach((e) => {
+      deg[e.asal] = (deg[e.asal] || 0) + 1
+      deg[e.tujuan] = (deg[e.tujuan] || 0) + 1
+    })
+
+    for (let i = 0; i < edges.length; i += 1) {
+      const e = edges[i]
+      const pjg = hitungPanjangRuasGeo(e.geometry)
+
+      if (pjg < MIN_PANJANG_RUAS) {
+        const asalBuntuNonPintu = deg[e.asal] === 1 && e.asal > 18
+        const tujuanBuntuNonPintu = deg[e.tujuan] === 1 && e.tujuan > 18
+
+        if (asalBuntuNonPintu || tujuanBuntuNonPintu) {
+          const deadNodeIds = []
+          if (asalBuntuNonPintu) deadNodeIds.push(e.asal)
+          if (tujuanBuntuNonPintu && !deadNodeIds.includes(e.tujuan)) deadNodeIds.push(e.tujuan)
+
+          const deadNodes = deadNodeIds.map((id) => nodes.find((n) => n.id === id)).filter(Boolean)
+
+          laporanRuasMikroDibuang.push({
+            ruasId: e.id,
+            asal: e.asal,
+            tujuan: e.tujuan,
+            panjang: pjg,
+            simpulDibuang: deadNodes.map((n) => ({
+              id: n.id,
+              coord: n.coord,
+              lat: n.coord[1],
+              lon: n.coord[0],
+            })),
+          })
+
+          // Buang simpul derajat 1 non-pintu tanpa mengubah/me-renumber ID simpul lain
+          const deadSet = new Set(deadNodeIds)
+          nodes = nodes.filter((n) => !deadSet.has(n.id))
+
+          // Buang ruas mikro
+          edges.splice(i, 1)
+          pangkasBerubah = true
+          break
+        }
+      }
+    }
+  }
+
+  // 10. Analisis Graf: Derajat, Komponen, dan Pintu Tersambung
   const adj = {}
   nodes.forEach((n) => {
     adj[n.id] = []
@@ -456,6 +534,9 @@ function prosesJaringan(rawEdges, refKoordinat) {
     laporanTNoding,
     laporanCelahBesar,
     laporanUjungDekatPintu,
+    laporanRuasMikroDibuang,
+    jumlahSimpulSebelumPangkas,
+    jumlahRuasSebelumPangkas,
   }
 }
 
@@ -547,6 +628,9 @@ function main() {
     laporanTNoding,
     laporanCelahBesar,
     laporanUjungDekatPintu,
+    laporanRuasMikroDibuang,
+    jumlahSimpulSebelumPangkas,
+    jumlahRuasSebelumPangkas,
   } = hasil
 
   const totalSimpul = nodes.length
@@ -555,11 +639,24 @@ function main() {
   const totalSisi = edges.length
 
   console.log('\n--- RINGKASAN TOPOLOGI ---')
-  console.log(`• Total Simpul          : ${totalSimpul}`)
+  console.log(`• Total Simpul          : ${totalSimpul} (Sebelum pemangkasan: ${jumlahSimpulSebelumPangkas})`)
   console.log(`  - Simpul Pintu (1-18) : ${simpulPintu}`)
   console.log(`  - Simpul Persimpangan : ${simpulPersimpangan} (ID 19 s.d. ${18 + simpulPersimpangan})`)
-  console.log(`• Total Sisi (Edges)    : ${totalSisi}`)
+  console.log(`• Total Sisi (Edges)    : ${totalSisi} (Sebelum pemangkasan: ${jumlahRuasSebelumPangkas})`)
   console.log(`• Keunikan ID Sisi      : ${isEdgeIdUnique ? 'VALID (semua ID unik)' : 'TIDAK UNIK (ADA DUPLIKAT)'}`)
+
+  console.log('\n--- PEMANGKASAN RUAS MIKRO BUNTU NON-PINTU (< 0,25 m) ---')
+  if (laporanRuasMikroDibuang.length === 0) {
+    console.log('• Tidak ada ruas mikro buntu yang dibuang.')
+  } else {
+    console.log(`• Jumlah ruas mikro dibuang: ${laporanRuasMikroDibuang.length}`)
+    laporanRuasMikroDibuang.forEach((r, idx) => {
+      console.log(`  ${idx + 1}. Ruas ID ${r.ruasId} (asal: ${r.asal}, tujuan: ${r.tujuan}) | Panjang: ${r.panjang.toFixed(4)} m`)
+      r.simpulDibuang.forEach((s) => {
+        console.log(`     -> Simpul dibuang: ID ${s.id} di [lat: ${s.lat.toFixed(7)}, lon: ${s.lon.toFixed(7)}]`)
+      })
+    })
+  }
 
   console.log('\n--- PEMUTUSAN VERTEX PINTU INTERIOR (Toleransi <= 0,05 m) ---')
   console.log(`• Jumlah pintu dipecah: ${laporanPintuDipecah.length}`)

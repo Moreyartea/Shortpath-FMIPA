@@ -1,0 +1,3271 @@
+{
+  "type": "FeatureCollection",
+  "name": "edges_fmipa",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "asal": 19,
+        "tujuan": 5
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715515712,
+              3.607228439
+            ],
+            [
+              98.715545985,
+              3.60719772
+            ],
+            [
+              98.7155444,
+              3.6071
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "asal": 5,
+        "tujuan": 20
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7155444,
+              3.6071
+            ],
+            [
+              98.71554427,
+              3.607091254
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "asal": 20,
+        "tujuan": 21
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71554427,
+              3.607091254
+            ],
+            [
+              98.715543314,
+              3.607026766
+            ],
+            [
+              98.715515712,
+              3.606987589
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "asal": 21,
+        "tujuan": 3
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715515712,
+              3.606987589
+            ],
+            [
+              98.7156,
+              3.6068583
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "asal": 3,
+        "tujuan": 22
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7156,
+              3.6068583
+            ],
+            [
+              98.715655725,
+              3.606785472
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "asal": 8,
+        "tujuan": 21
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7153889,
+              3.60695
+            ],
+            [
+              98.715462289,
+              3.606946632
+            ],
+            [
+              98.715515712,
+              3.606987589
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "asal": 8,
+        "tujuan": 23
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7153889,
+              3.60695
+            ],
+            [
+              98.715310033,
+              3.606948412
+            ],
+            [
+              98.715267294,
+              3.606984028
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "asal": 23,
+        "tujuan": 4
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715267294,
+              3.606984028
+            ],
+            [
+              98.7151139,
+              3.6068611
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "asal": 4,
+        "tujuan": 24
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7151139,
+              3.6068611
+            ],
+            [
+              98.71501487,
+              3.606808176
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "asal": 6,
+        "tujuan": 23
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7152389,
+              3.6071056
+            ],
+            [
+              98.715236131,
+              3.607024986
+            ],
+            [
+              98.715267294,
+              3.606984028
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "asal": 6,
+        "tujuan": 25
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7152389,
+              3.6071056
+            ],
+            [
+              98.715242364,
+              3.607188817
+            ],
+            [
+              98.715287773,
+              3.607236898
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12,
+        "asal": 25,
+        "tujuan": 1
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715287773,
+              3.607236898
+            ],
+            [
+              98.7151222,
+              3.607375
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "asal": 1,
+        "tujuan": 26
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7151222,
+              3.607375
+            ],
+            [
+              98.715016651,
+              3.607496445
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "asal": 19,
+        "tujuan": 7
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715515712,
+              3.607228439
+            ],
+            [
+              98.715491004,
+              3.607249363
+            ],
+            [
+              98.7154028,
+              3.6072556
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15,
+        "asal": 7,
+        "tujuan": 27
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7154028,
+              3.6072556
+            ],
+            [
+              98.715312704,
+              3.607254705
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16,
+        "asal": 27,
+        "tujuan": 25
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715312704,
+              3.607254705
+            ],
+            [
+              98.715287773,
+              3.607236898
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "asal": 19,
+        "tujuan": 2
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715515712,
+              3.607228439
+            ],
+            [
+              98.7156083,
+              3.6073639
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "asal": 2,
+        "tujuan": 28
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7156083,
+              3.6073639
+            ],
+            [
+              98.715713675,
+              3.607457676
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19,
+        "asal": 14,
+        "tujuan": 29
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7154056,
+              3.6066333
+            ],
+            [
+              98.71542601,
+              3.606632018
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 20,
+        "asal": 29,
+        "tujuan": 30
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71542601,
+              3.606632018
+            ],
+            [
+              98.715438737,
+              3.606631218
+            ],
+            [
+              98.715506141,
+              3.606626983
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 21,
+        "asal": 30,
+        "tujuan": 31
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715506141,
+              3.606626983
+            ],
+            [
+              98.715507921,
+              3.606703556
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 22,
+        "asal": 31,
+        "tujuan": 22
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715507921,
+              3.606703556
+            ],
+            [
+              98.715602302,
+              3.606739171
+            ],
+            [
+              98.715655725,
+              3.606785472
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 23,
+        "asal": 8,
+        "tujuan": 32
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7153889,
+              3.60695
+            ],
+            [
+              98.71538861,
+              3.606908345
+            ],
+            [
+              98.715432821,
+              3.606832459
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 24,
+        "asal": 32,
+        "tujuan": 31
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715432821,
+              3.606832459
+            ],
+            [
+              98.715448104,
+              3.606806228
+            ],
+            [
+              98.715507921,
+              3.606703556
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 25,
+        "asal": 33,
+        "tujuan": 29
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715425486,
+              3.606538501
+            ],
+            [
+              98.715426006,
+              3.60663188
+            ],
+            [
+              98.71542601,
+              3.606632018
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 26,
+        "asal": 29,
+        "tujuan": 34
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71542601,
+              3.606632018
+            ],
+            [
+              98.715430367,
+              3.606760223
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 27,
+        "asal": 34,
+        "tujuan": 32
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715430367,
+              3.606760223
+            ],
+            [
+              98.715432821,
+              3.606832459
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28,
+        "asal": 9,
+        "tujuan": 35
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7147639,
+              3.6068333
+            ],
+            [
+              98.714767342,
+              3.606906119
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29,
+        "asal": 35,
+        "tujuan": 36
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714767342,
+              3.606906119
+            ],
+            [
+              98.714934735,
+              3.606902557
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30,
+        "asal": 36,
+        "tujuan": 24
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714934735,
+              3.606902557
+            ],
+            [
+              98.71501487,
+              3.606808176
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31,
+        "asal": 24,
+        "tujuan": 37
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71501487,
+              3.606808176
+            ],
+            [
+              98.715050485,
+              3.606765438
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32,
+        "asal": 37,
+        "tujuan": 34
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715050485,
+              3.606765438
+            ],
+            [
+              98.715430367,
+              3.606760223
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33,
+        "asal": 35,
+        "tujuan": 38
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714767342,
+              3.606906119
+            ],
+            [
+              98.714717481,
+              3.606907009
+            ],
+            [
+              98.714720152,
+              3.606970227
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 34,
+        "asal": 38,
+        "tujuan": 39
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714720152,
+              3.606970227
+            ],
+            [
+              98.714571409,
+              3.606972976
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35,
+        "asal": 39,
+        "tujuan": 40
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714571409,
+              3.606972976
+            ],
+            [
+              98.714532575,
+              3.606973693
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 36,
+        "asal": 40,
+        "tujuan": 41
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714532575,
+              3.606973693
+            ],
+            [
+              98.714286534,
+              3.60697824
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 37,
+        "asal": 41,
+        "tujuan": 42
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714286534,
+              3.60697824
+            ],
+            [
+              98.714281331,
+              3.606836562
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 38,
+        "asal": 42,
+        "tujuan": 10
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714281331,
+              3.606836562
+            ],
+            [
+              98.714274959,
+              3.606663043
+            ],
+            [
+              98.7141556,
+              3.6066639
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39,
+        "asal": 10,
+        "tujuan": 43
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7141556,
+              3.6066639
+            ],
+            [
+              98.714075979,
+              3.60666365
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40,
+        "asal": 41,
+        "tujuan": 44
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714286534,
+              3.60697824
+            ],
+            [
+              98.714122345,
+              3.606980959
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 41,
+        "asal": 44,
+        "tujuan": 45
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714122345,
+              3.606980959
+            ],
+            [
+              98.714017637,
+              3.606982692
+            ],
+            [
+              98.714017637,
+              3.606825984
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 42,
+        "asal": 45,
+        "tujuan": 11
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714017637,
+              3.606825984
+            ],
+            [
+              98.713866271,
+              3.606829546
+            ],
+            [
+              98.7138694,
+              3.6069944
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 43,
+        "asal": 11,
+        "tujuan": 46
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7138694,
+              3.6069944
+            ],
+            [
+              98.713869833,
+              3.607103785
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 44,
+        "asal": 41,
+        "tujuan": 47
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714286534,
+              3.60697824
+            ],
+            [
+              98.71428914997098,
+              3.60709308076407
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 45,
+        "asal": 47,
+        "tujuan": 48
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71428914997098,
+              3.60709308076407
+            ],
+            [
+              98.714290868,
+              3.607168502
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 46,
+        "asal": 48,
+        "tujuan": 49
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714290868,
+              3.607168502
+            ],
+            [
+              98.714294019,
+              3.607306866
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 47,
+        "asal": 49,
+        "tujuan": 50
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714294019,
+              3.607306866
+            ],
+            [
+              98.714295438,
+              3.60736912
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 48,
+        "asal": 50,
+        "tujuan": 12
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714295438,
+              3.60736912
+            ],
+            [
+              98.7143417,
+              3.6073667
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 49,
+        "asal": 46,
+        "tujuan": 51
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713869833,
+              3.607103785
+            ],
+            [
+              98.713964724,
+              3.607101362
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 50,
+        "asal": 51,
+        "tujuan": 52
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713964724,
+              3.607101362
+            ],
+            [
+              98.714122048,
+              3.607097345
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 51,
+        "asal": 52,
+        "tujuan": 47
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714122048,
+              3.607097345
+            ],
+            [
+              98.71428914997098,
+              3.60709308076407
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 52,
+        "asal": 46,
+        "tujuan": 53
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713869833,
+              3.607103785
+            ],
+            [
+              98.713832437,
+              3.607105565
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 53,
+        "asal": 53,
+        "tujuan": 54
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713832437,
+              3.607105565
+            ],
+            [
+              98.71383289876735,
+              3.6071519798162455
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 54,
+        "asal": 54,
+        "tujuan": 55
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71383289876735,
+              3.6071519798162455
+            ],
+            [
+              98.713835998,
+              3.607463501
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 55,
+        "asal": 55,
+        "tujuan": 56
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713835998,
+              3.607463501
+            ],
+            [
+              98.714297218,
+              3.607454597
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 56,
+        "asal": 56,
+        "tujuan": 50
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714297218,
+              3.607454597
+            ],
+            [
+              98.714295438,
+              3.60736912
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 57,
+        "asal": 39,
+        "tujuan": 18
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714571409,
+              3.606972976
+            ],
+            [
+              98.71457656045928,
+              3.607192059608448
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 58,
+        "asal": 18,
+        "tujuan": 57
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71457656045928,
+              3.607192059608448
+            ],
+            [
+              98.714580361,
+              3.607305012
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 59,
+        "asal": 57,
+        "tujuan": 49
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714580361,
+              3.607305012
+            ],
+            [
+              98.714294019,
+              3.607306866
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 60,
+        "asal": 57,
+        "tujuan": 58
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714580361,
+              3.607305012
+            ],
+            [
+              98.714822546,
+              3.607304122
+            ],
+            [
+              98.714859816,
+              3.607341049
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 61,
+        "asal": 58,
+        "tujuan": 59
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714859816,
+              3.607341049
+            ],
+            [
+              98.714921664,
+              3.60740233
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 62,
+        "asal": 59,
+        "tujuan": 26
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714921664,
+              3.60740233
+            ],
+            [
+              98.715016651,
+              3.607496445
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 63,
+        "asal": 55,
+        "tujuan": 60
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713835998,
+              3.607463501
+            ],
+            [
+              98.713815074,
+              3.607463612
+            ],
+            [
+              98.713820416,
+              3.607849149
+            ],
+            [
+              98.714301225,
+              3.607840246
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 64,
+        "asal": 60,
+        "tujuan": 56
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714301225,
+              3.607840246
+            ],
+            [
+              98.714297218,
+              3.607454597
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 65,
+        "asal": 60,
+        "tujuan": 61
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714301225,
+              3.607840246
+            ],
+            [
+              98.714882647,
+              3.607831342
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 66,
+        "asal": 61,
+        "tujuan": 62
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714882647,
+              3.607831342
+            ],
+            [
+              98.71487917827295,
+              3.6077316147579785
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 67,
+        "asal": 62,
+        "tujuan": 63
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71487917827295,
+              3.6077316147579785
+            ],
+            [
+              98.714875524,
+              3.607626553
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 68,
+        "asal": 63,
+        "tujuan": 26
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714875524,
+              3.607626553
+            ],
+            [
+              98.715016651,
+              3.607496445
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 69,
+        "asal": 13,
+        "tujuan": 62
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7146833,
+              3.607625
+            ],
+            [
+              98.714686762,
+              3.607736961
+            ],
+            [
+              98.71487917827295,
+              3.6077316147579785
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 70,
+        "asal": 38,
+        "tujuan": 64
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714720152,
+              3.606970227
+            ],
+            [
+              98.714725049,
+              3.607144854
+            ],
+            [
+              98.715097231,
+              3.607137731
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 71,
+        "asal": 64,
+        "tujuan": 6
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715097231,
+              3.607137731
+            ],
+            [
+              98.7152389,
+              3.6071056
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 72,
+        "asal": 64,
+        "tujuan": 59
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715097231,
+              3.607137731
+            ],
+            [
+              98.714921664,
+              3.60740233
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 73,
+        "asal": 26,
+        "tujuan": 65
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715016651,
+              3.607496445
+            ],
+            [
+              98.715135517,
+              3.607615868
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 74,
+        "asal": 65,
+        "tujuan": 66
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715135517,
+              3.607615868
+            ],
+            [
+              98.715272439,
+              3.607474225
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 75,
+        "asal": 66,
+        "tujuan": 27
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715272439,
+              3.607474225
+            ],
+            [
+              98.715342087,
+              3.607402175
+            ],
+            [
+              98.715299348,
+              3.607338068
+            ],
+            [
+              98.715312704,
+              3.607254705
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 76,
+        "asal": 66,
+        "tujuan": 67
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715272439,
+              3.607474225
+            ],
+            [
+              98.715411537,
+              3.607607855
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 77,
+        "asal": 67,
+        "tujuan": 28
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715411537,
+              3.607607855
+            ],
+            [
+              98.715521055,
+              3.607492105
+            ],
+            [
+              98.715647193,
+              3.607598951
+            ],
+            [
+              98.715665,
+              3.607508725
+            ],
+            [
+              98.715713675,
+              3.607457676
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 78,
+        "asal": 20,
+        "tujuan": 68
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71554427,
+              3.607091254
+            ],
+            [
+              98.715645988,
+              3.607091991
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 79,
+        "asal": 68,
+        "tujuan": 69
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715645988,
+              3.607091991
+            ],
+            [
+              98.715814585,
+              3.607093211
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 80,
+        "asal": 69,
+        "tujuan": 70
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715814585,
+              3.607093211
+            ],
+            [
+              98.715821708,
+              3.607335397
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 81,
+        "asal": 70,
+        "tujuan": 71
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715821708,
+              3.607335397
+            ],
+            [
+              98.715767763,
+              3.607396455
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 82,
+        "asal": 71,
+        "tujuan": 28
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715767763,
+              3.607396455
+            ],
+            [
+              98.715713675,
+              3.607457676
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 83,
+        "asal": 22,
+        "tujuan": 72
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715655725,
+              3.606785472
+            ],
+            [
+              98.715733293,
+              3.60687593
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 84,
+        "asal": 72,
+        "tujuan": 73
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715733293,
+              3.60687593
+            ],
+            [
+              98.715781156,
+              3.606931747
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 85,
+        "asal": 73,
+        "tujuan": 74
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715781156,
+              3.606931747
+            ],
+            [
+              98.715808649,
+              3.606963809
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 86,
+        "asal": 74,
+        "tujuan": 69
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715808649,
+              3.606963809
+            ],
+            [
+              98.715814585,
+              3.607093211
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 87,
+        "asal": 73,
+        "tujuan": 75
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715781156,
+              3.606931747
+            ],
+            [
+              98.715711063,
+              3.607014843
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 88,
+        "asal": 75,
+        "tujuan": 68
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715711063,
+              3.607014843
+            ],
+            [
+              98.715645988,
+              3.607091991
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 89,
+        "asal": 75,
+        "tujuan": 72
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715711063,
+              3.607014843
+            ],
+            [
+              98.715657877,
+              3.606957873
+            ],
+            [
+              98.715733293,
+              3.60687593
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 90,
+        "asal": 64,
+        "tujuan": 36
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715097231,
+              3.607137731
+            ],
+            [
+              98.714934735,
+              3.606902557
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 91,
+        "asal": 61,
+        "tujuan": 76
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714882647,
+              3.607831342
+            ],
+            [
+              98.715839587,
+              3.607809851
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 92,
+        "asal": 76,
+        "tujuan": 77
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715839587,
+              3.607809851
+            ],
+            [
+              98.716085263,
+              3.607804333
+            ],
+            [
+              98.716062745,
+              3.607380937
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 93,
+        "asal": 77,
+        "tujuan": 78
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.716062745,
+              3.607380937
+            ],
+            [
+              98.716025088,
+              3.606672864
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 94,
+        "asal": 78,
+        "tujuan": 79
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.716025088,
+              3.606672864
+            ],
+            [
+              98.716006909,
+              3.606331041
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 95,
+        "asal": 77,
+        "tujuan": 80
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.716062745,
+              3.607380937
+            ],
+            [
+              98.715936322,
+              3.607383784
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 96,
+        "asal": 80,
+        "tujuan": 81
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715936322,
+              3.607383784
+            ],
+            [
+              98.715818147,
+              3.607386445
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 97,
+        "asal": 81,
+        "tujuan": 76
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715818147,
+              3.607386445
+            ],
+            [
+              98.715839587,
+              3.607809851
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 98,
+        "asal": 81,
+        "tujuan": 70
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715818147,
+              3.607386445
+            ],
+            [
+              98.715821708,
+              3.607335397
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 99,
+        "asal": 80,
+        "tujuan": 82
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715936322,
+              3.607383784
+            ],
+            [
+              98.71591354697568,
+              3.606677828203917
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 100,
+        "asal": 82,
+        "tujuan": 83
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71591354697568,
+              3.606677828203917
+            ],
+            [
+              98.715912231,
+              3.606637037
+            ],
+            [
+              98.715824379,
+              3.606651283
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 101,
+        "asal": 83,
+        "tujuan": 84
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715824379,
+              3.606651283
+            ],
+            [
+              98.71567242,
+              3.606504072
+            ],
+            [
+              98.715546579,
+              3.606537313
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 102,
+        "asal": 84,
+        "tujuan": 30
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715546579,
+              3.606537313
+            ],
+            [
+              98.715506141,
+              3.606626983
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 103,
+        "asal": 83,
+        "tujuan": 85
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715824379,
+              3.606651283
+            ],
+            [
+              98.715795224,
+              3.606668776
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 104,
+        "asal": 85,
+        "tujuan": 22
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715795224,
+              3.606668776
+            ],
+            [
+              98.715782828,
+              3.606676214
+            ],
+            [
+              98.715744838,
+              3.606632288
+            ],
+            [
+              98.715655725,
+              3.606785472
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 105,
+        "asal": 85,
+        "tujuan": 74
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715795224,
+              3.606668776
+            ],
+            [
+              98.715808649,
+              3.606963809
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 106,
+        "asal": 68,
+        "tujuan": 71
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715645988,
+              3.607091991
+            ],
+            [
+              98.715652832,
+              3.607245467
+            ],
+            [
+              98.715767763,
+              3.607396455
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 107,
+        "asal": 67,
+        "tujuan": 65
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715411537,
+              3.607607855
+            ],
+            [
+              98.715135517,
+              3.607615868
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 108,
+        "asal": 65,
+        "tujuan": 63
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715135517,
+              3.607615868
+            ],
+            [
+              98.714875524,
+              3.607626553
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 109,
+        "asal": 17,
+        "tujuan": 86
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71451554901829,
+              3.606569191393881
+            ],
+            [
+              98.714518479,
+              3.60670708
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 110,
+        "asal": 86,
+        "tujuan": 15
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714518479,
+              3.60670708
+            ],
+            [
+              98.71446384440722,
+              3.606705691567079
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 111,
+        "asal": 17,
+        "tujuan": 16
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71451554901829,
+              3.606569191393881
+            ],
+            [
+              98.71451348083384,
+              3.60649887312284
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 112,
+        "asal": 17,
+        "tujuan": 87
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71451554901829,
+              3.606569191393881
+            ],
+            [
+              98.715048072,
+              3.60655123
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 113,
+        "asal": 87,
+        "tujuan": 33
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715048072,
+              3.60655123
+            ],
+            [
+              98.715425486,
+              3.606538501
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 114,
+        "asal": 87,
+        "tujuan": 37
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715048072,
+              3.60655123
+            ],
+            [
+              98.715050485,
+              3.606765438
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 115,
+        "asal": 43,
+        "tujuan": 45
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714075979,
+              3.60666365
+            ],
+            [
+              98.714013037,
+              3.606663452
+            ],
+            [
+              98.714017637,
+              3.606825984
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 116,
+        "asal": 43,
+        "tujuan": 88
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714075979,
+              3.60666365
+            ],
+            [
+              98.714080177,
+              3.606808441
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 117,
+        "asal": 88,
+        "tujuan": 89
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714080177,
+              3.606808441
+            ],
+            [
+              98.714080654,
+              3.606824909
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 118,
+        "asal": 89,
+        "tujuan": 90
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714080654,
+              3.606824909
+            ],
+            [
+              98.714081893,
+              3.606867647
+            ],
+            [
+              98.714118696,
+              3.606867647
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 119,
+        "asal": 90,
+        "tujuan": 44
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714118696,
+              3.606867647
+            ],
+            [
+              98.714122345,
+              3.606980959
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 120,
+        "asal": 45,
+        "tujuan": 89
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714017637,
+              3.606825984
+            ],
+            [
+              98.714080654,
+              3.606824909
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 121,
+        "asal": 42,
+        "tujuan": 91
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714281331,
+              3.606836562
+            ],
+            [
+              98.714143627,
+              3.606840342
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 122,
+        "asal": 91,
+        "tujuan": 88
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714143627,
+              3.606840342
+            ],
+            [
+              98.714142439,
+              3.606808288
+            ],
+            [
+              98.714080177,
+              3.606808441
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 123,
+        "asal": 90,
+        "tujuan": 91
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714118696,
+              3.606867647
+            ],
+            [
+              98.714146001,
+              3.60686646
+            ],
+            [
+              98.714143627,
+              3.606840342
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 124,
+        "asal": 51,
+        "tujuan": 92
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713964724,
+              3.607101362
+            ],
+            [
+              98.71396713799281,
+              3.6071471750395157
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 125,
+        "asal": 92,
+        "tujuan": 48
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71396713799281,
+              3.6071471750395157
+            ],
+            [
+              98.713968517,
+              3.607173346
+            ],
+            [
+              98.714290868,
+              3.607168502
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 126,
+        "asal": 54,
+        "tujuan": 92
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71383289876735,
+              3.6071519798162455
+            ],
+            [
+              98.71396713799281,
+              3.6071471750395157
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 127,
+        "asal": 63,
+        "tujuan": 58
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714875524,
+              3.607626553
+            ],
+            [
+              98.714859816,
+              3.607341049
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 128,
+        "asal": 53,
+        "tujuan": 17
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.713832437,
+              3.607105565
+            ],
+            [
+              98.713730487,
+              3.607105677
+            ],
+            [
+              98.713726777,
+              3.606497914
+            ],
+            [
+              98.713824126,
+              3.606502663
+            ],
+            [
+              98.71384787,
+              3.606449239
+            ],
+            [
+              98.713953529,
+              3.606429057
+            ],
+            [
+              98.714012888,
+              3.606459924
+            ],
+            [
+              98.714028322,
+              3.606509786
+            ],
+            [
+              98.714037819,
+              3.60655015
+            ],
+            [
+              98.714120922,
+              3.606548369
+            ],
+            [
+              98.714122703,
+              3.606565583
+            ],
+            [
+              98.714426324,
+              3.606553415
+            ],
+            [
+              98.714428699,
+              3.606570035
+            ],
+            [
+              98.71451554901829,
+              3.606569191393881
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 129,
+        "asal": 33,
+        "tujuan": 84
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715425486,
+              3.606538501
+            ],
+            [
+              98.715546579,
+              3.606537313
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 130,
+        "asal": 82,
+        "tujuan": 78
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71591354697568,
+              3.606677828203917
+            ],
+            [
+              98.716025088,
+              3.606672864
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 131,
+        "asal": 44,
+        "tujuan": 52
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714122345,
+              3.606980959
+            ],
+            [
+              98.714122048,
+              3.607097345
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 132,
+        "asal": 86,
+        "tujuan": 40
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714518479,
+              3.60670708
+            ],
+            [
+              98.714532575,
+              3.606973693
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 133,
+        "asal": 40,
+        "tujuan": 93
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714532575,
+              3.606973693
+            ],
+            [
+              98.714532607,
+              3.606974293
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

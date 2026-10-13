@@ -20,7 +20,7 @@ Jalur terpendek dihitung dengan algoritma **Dijkstra** (utama) dan **A\*** (pemb
 ```bash
 npm install
 npm run dev        # pengembangan, http://localhost:5173
-npm test           # 114 tes: data, algoritma, pencarian, tampilan
+npm test           # 140 tes: data, algoritma, pencarian, tampilan
 npm run lint
 npm run build      # hasil di folder dist (statis, tanpa server)
 ```
@@ -31,8 +31,8 @@ Aplikasi sepenuhnya statis: data peta dan ruangan dibundel bersama aplikasi, jad
 
 | Folder/berkas | Isi |
 |---|---|
-| `src/data/koordinat_fmipa.geojson` | Titik jaringan jalan: 93 simpul (18 pintu gedung + 75 persimpangan jalur) |
-| `src/data/edges_fmipa.geojson` | Jalur jalan kaki: 133 ruas (MultiLineString), digambar di QGIS |
+| `src/data/koordinat_fmipa.geojson` | Titik jaringan jalan: 92 simpul (18 pintu gedung + 74 persimpangan jalur) |
+| `src/data/edges_fmipa.geojson` | Jalur jalan kaki: 132 ruas (MultiLineString), digambar di QGIS |
 | `src/data/gedung_fmipa.geojson` | Poligon gedung untuk tampilan peta |
 | `src/data/tempat.json` | **Sumber tunggal** daftar gedung: nama, kelompok, kode gedung kampus, titik jaringan, poligon |
 | `src/data/rooms.json` | Data ruangan bawaan (dipakai jika Supabase belum diisi) |
