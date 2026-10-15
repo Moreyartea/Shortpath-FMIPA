@@ -11,6 +11,7 @@ Jalur terpendek dihitung dengan algoritma **Dijkstra** (utama) dan **A\*** (pemb
 - **Rute otomatis**: jarak, perkiraan menit jalan kaki, pintu masuk yang disarankan, dan langkah-langkah bernama gedung dengan arah mata angin.
 - **Hasil terdekat lebih dulu** setelah titik awal dipilih.
 - **Jelajahi gedung**: penjelasan susunan kawasan, daftar gedung per kelompok, tetangga langsung tiap gedung, ringkasan isi (jumlah toilet, mushola, ruang penting), dan daftar ruangan per lantai.
+- **Foto visual gedung**: foto gedung dan fasilitas (format WebP teroptimasi) pada rincian gedung dan kartu hasil rute agar pengguna mudah mengenali fisik bangunan saat tiba.
 - **Bagikan rute** lewat tautan; membuka tautan langsung menampilkan rute.
 - **Panduan singkat** pada kunjungan pertama; bisa dibuka lagi lewat "Cara pakai".
 - Nyaman di HP (panel bergeser dari bawah) dan di laptop, bisa dipakai dengan keyboard.
@@ -20,7 +21,7 @@ Jalur terpendek dihitung dengan algoritma **Dijkstra** (utama) dan **A\*** (pemb
 ```bash
 npm install
 npm run dev        # pengembangan, http://localhost:5173
-npm test           # 140 tes: data, algoritma, pencarian, tampilan
+npm test           # 146 tes: data, algoritma, pencarian, foto, tampilan
 npm run lint
 npm run build      # hasil di folder dist (statis, tanpa server)
 ```
@@ -36,12 +37,15 @@ Aplikasi sepenuhnya statis: data peta dan ruangan dibundel bersama aplikasi, jad
 | `src/data/gedung_fmipa.geojson` | Poligon gedung untuk tampilan peta |
 | `src/data/tempat.json` | **Sumber tunggal** daftar gedung: nama, kelompok, kode gedung kampus, titik jaringan, poligon |
 | `src/data/rooms.json` | Data ruangan bawaan (dipakai jika Supabase belum diisi) |
+| `src/assets/foto/` | Foto gedung & fasilitas FMIPA dalam format WebP (15 berkas teroptimasi, <= 300 KB, tanpa metadata) |
+| `src/lib/foto.js` | Pemetaan dinamis dan helper ketersediaan/URL foto tempat |
 | `src/lib/graph.js` | Graf, Dijkstra, A\*, Floyd-Warshall |
 | `src/lib/routing.js` | Rute antar tempat, langkah rute, validasi |
 | `src/lib/search.js`, `hasilCari.js` | Pencarian, sinonim, saran ejaan, pengurutan hasil |
 | `src/lib/rooms.js`, `places.js` | Model ruangan dan tempat |
 | `src/components/` | Tampilan |
 | `scripts/bangun-jaringan.mjs` | Skrip noding & pembangun topologi jaringan dari data mentah QGIS |
+| `scripts/kecilkan-foto.mjs` | Skrip optimasi & kompresi foto ke WebP (rotasi EXIF, max 1280px, hapus metadata) |
 | `supabase/schema.sql` | Tabel, keamanan (RLS), fungsi impor |
 | `tests/` | Pengujian |
 
@@ -69,6 +73,7 @@ Project Supabase paket gratis dijeda jika lama tidak aktif; buka aplikasinya seb
 ## Yang diuji
 
 - Integritas data: ID unik, ujung jalur menempel pada titiknya, jaringan terhubung, setiap titik dimiliki satu tempat, setiap poligon terpakai, lantai ruangan tidak melebihi jumlah lantai gedung.
+- Aset foto: setiap tempat di `tempat.json` memiliki berkas foto WebP yang valid, tidak ada berkas yatim, seluruh berkas <= 300 KB tanpa metadata EXIF/GPS, dan foto muncul pada `DetailTempat` dan `KartuRute`.
 - Algoritma: Dijkstra = Floyd-Warshall dan Dijkstra = A\* untuk semua pasangan tempat; bobot = panjang garis yang digambar.
 - Pencarian: sinonim, saran ejaan, nama ganda per gedung dan lantai, ruangan tanpa lantai, pengurutan terdekat.
 - Alur pengguna lengkap (cari, pilih titik awal, rute, tukar, bagikan, jelajah, GPS, panduan, admin) pada aplikasi utuh.

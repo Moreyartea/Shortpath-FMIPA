@@ -4,6 +4,7 @@ import { formatJarak, KECEPATAN_JALAN, teksLantai, teksMenit } from '../lib/form
 import { validasiSemuaTempat } from '../lib/routing'
 import { namaTitik } from '../lib/places'
 import { tentukanNavigasiLantai } from '../lib/navigasiLantai'
+import { ambilFotoTempat } from '../lib/foto'
 
 function Perbandingan({ rute, graphData, indeks, aturan }) {
   const [validasi, setValidasi] = useState(null)
@@ -85,6 +86,7 @@ export default function KartuRute({ rute, ruteTanpaAturan, aturan, langkah, tuju
   const masuk = namaTitik(indeks, rute.targetId)
   const namaTujuan = tujuan.tempat.nama
   const navigasiLantai = tentukanNavigasiLantai(asal, tujuan)
+  const fotoTujuan = tujuan?.tempat?.id ? ambilFotoTempat(tujuan.tempat.id) : null
 
   return (
     <section aria-label="Hasil rute" className="space-y-4">
@@ -164,6 +166,23 @@ export default function KartuRute({ rute, ruteTanpaAturan, aturan, langkah, tuju
           <p className="flex gap-1.5 text-teal-900">
             <span className="mt-0.5 flex-none"><IkonInfo ukuran={16} /></span>
             Rute berakhir di gedung. Setelah masuk, ikuti papan petunjuk lantai menuju ruangan.
+          </p>
+        </div>
+      )}
+
+      {/* Foto tempat tujuan */}
+      {fotoTujuan && (
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-xs">
+          <div className="relative aspect-[4/3] w-full">
+            <img
+              src={fotoTujuan}
+              alt={`Foto ${tujuan.tempat.nama}`}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <p className="px-3 py-2 text-xs font-medium text-slate-700">
+            Tampak {tujuan.tempat.nama}
           </p>
         </div>
       )}

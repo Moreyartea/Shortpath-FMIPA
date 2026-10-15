@@ -5,6 +5,7 @@ import { formatJarak, teksLantai } from '../lib/format'
 import { posisiRelatif, tempatTerhubung } from '../lib/places'
 import { ringkasanIsi, ruanganPerLantai } from '../lib/rooms'
 import { kebutuhanKueri, cocokKebutuhan, normalizeText } from '../lib/search'
+import { ambilFotoTempat } from '../lib/foto'
 
 export default function DetailTempat({ tempat, indeks, graph, ruangan, aturan, onKembali, onRuteKe, onRuteDari, onBuka, onPilihRuangan }) {
   const [saring, setSaring] = useState('')
@@ -13,6 +14,7 @@ export default function DetailTempat({ tempat, indeks, graph, ruangan, aturan, o
   const terhubung = useMemo(() => tempatTerhubung(indeks, graph, tempat.id), [indeks, graph, tempat.id])
   const pusat = indeks.daftar.find((t) => t.kelompok === 'pusat')
   const rel = pusat && pusat.id !== tempat.id ? posisiRelatif(indeks, pusat.id, tempat.id) : null
+  const fotoUrl = useMemo(() => ambilFotoTempat(tempat.id), [tempat.id])
 
   const semuaTitik = useMemo(() => tempat.titikSemua || tempat.titik || [], [tempat])
   const catatanAturan = useMemo(() => {
@@ -46,6 +48,17 @@ export default function DetailTempat({ tempat, indeks, graph, ruangan, aturan, o
       <button type="button" onClick={onKembali} className="inline-flex items-center gap-1 text-sm font-semibold text-sky-800">
         <IkonKembali ukuran={16} /> Kembali
       </button>
+
+      {fotoUrl && (
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-xs">
+          <img
+            src={fotoUrl}
+            alt={`Foto ${tempat.nama}`}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      )}
 
       <header>
         <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">{KELOMPOK[tempat.kelompok]?.nama}</p>
