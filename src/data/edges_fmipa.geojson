@@ -1180,8 +1180,31 @@
       "type": "Feature",
       "properties": {
         "id": 49,
-        "asal": 46,
+        "asal": 12,
         "tujuan": 51
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.7143417,
+              3.6073667
+            ],
+            [
+              98.714342596,
+              3.607306551
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 50,
+        "asal": 46,
+        "tujuan": 52
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1202,9 +1225,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 50,
-        "asal": 51,
-        "tujuan": 52
+        "id": 51,
+        "asal": 52,
+        "tujuan": 53
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1225,8 +1248,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 51,
-        "asal": 52,
+        "id": 52,
+        "asal": 53,
         "tujuan": 47
       },
       "geometry": {
@@ -1248,9 +1271,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 52,
+        "id": 53,
         "asal": 46,
-        "tujuan": 53
+        "tujuan": 54
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1271,9 +1294,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 53,
-        "asal": 53,
-        "tujuan": 54
+        "id": 54,
+        "asal": 54,
+        "tujuan": 55
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1294,9 +1317,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 54,
-        "asal": 54,
-        "tujuan": 55
+        "id": 55,
+        "asal": 55,
+        "tujuan": 56
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1317,9 +1340,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 55,
-        "asal": 55,
-        "tujuan": 56
+        "id": 56,
+        "asal": 56,
+        "tujuan": 57
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1340,8 +1363,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 56,
-        "asal": 56,
+        "id": 57,
+        "asal": 57,
         "tujuan": 50
       },
       "geometry": {
@@ -1363,7 +1386,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 57,
+        "id": 58,
         "asal": 39,
         "tujuan": 18
       },
@@ -1386,9 +1409,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 58,
+        "id": 59,
         "asal": 18,
-        "tujuan": 57
+        "tujuan": 58
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1409,9 +1432,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 59,
-        "asal": 57,
-        "tujuan": 49
+        "id": 60,
+        "asal": 58,
+        "tujuan": 51
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1420,6 +1443,29 @@
             [
               98.714580361,
               3.607305012
+            ],
+            [
+              98.714342596,
+              3.607306551
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 61,
+        "asal": 51,
+        "tujuan": 49
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714342596,
+              3.607306551
             ],
             [
               98.714294019,
@@ -1432,9 +1478,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 60,
-        "asal": 57,
-        "tujuan": 58
+        "id": 62,
+        "asal": 58,
+        "tujuan": 59
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1444,6 +1490,25 @@
               98.714580361,
               3.607305012
             ],
+            [
+              98.714822546,
+              3.607304122
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 63,
+        "asal": 59,
+        "tujuan": 60
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
             [
               98.714822546,
               3.607304122
@@ -1459,9 +1524,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 61,
-        "asal": 58,
-        "tujuan": 59
+        "id": 64,
+        "asal": 60,
+        "tujuan": 61
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1482,8 +1547,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 62,
-        "asal": 59,
+        "id": 65,
+        "asal": 61,
         "tujuan": 26
       },
       "geometry": {
@@ -1505,9 +1570,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 63,
-        "asal": 55,
-        "tujuan": 60
+        "id": 66,
+        "asal": 56,
+        "tujuan": 62
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1536,9 +1601,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 64,
-        "asal": 60,
-        "tujuan": 56
+        "id": 67,
+        "asal": 62,
+        "tujuan": 63
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1547,6 +1612,29 @@
             [
               98.714301225,
               3.607840246
+            ],
+            [
+              98.71429923889661,
+              3.6076490958174903
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 68,
+        "asal": 63,
+        "tujuan": 57
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71429923889661,
+              3.6076490958174903
             ],
             [
               98.714297218,
@@ -1559,9 +1647,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 65,
-        "asal": 60,
-        "tujuan": 61
+        "id": 69,
+        "asal": 62,
+        "tujuan": 64
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1582,9 +1670,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 66,
-        "asal": 61,
-        "tujuan": 62
+        "id": 70,
+        "asal": 64,
+        "tujuan": 65
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1605,9 +1693,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 67,
-        "asal": 62,
-        "tujuan": 63
+        "id": 71,
+        "asal": 65,
+        "tujuan": 66
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1628,8 +1716,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 68,
-        "asal": 63,
+        "id": 72,
+        "asal": 66,
         "tujuan": 26
       },
       "geometry": {
@@ -1651,9 +1739,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 69,
+        "id": 73,
         "asal": 13,
-        "tujuan": 62
+        "tujuan": 67
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1663,6 +1751,25 @@
               98.7146833,
               3.607625
             ],
+            [
+              98.714686762,
+              3.607736961
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 74,
+        "asal": 67,
+        "tujuan": 65
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
             [
               98.714686762,
               3.607736961
@@ -1678,9 +1785,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 70,
+        "id": 75,
         "asal": 38,
-        "tujuan": 64
+        "tujuan": 68
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1695,6 +1802,29 @@
               3.607144854
             ],
             [
+              98.715019054,
+              3.607139227
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 76,
+        "asal": 68,
+        "tujuan": 69
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715019054,
+              3.607139227
+            ],
+            [
               98.715097231,
               3.607137731
             ]
@@ -1705,8 +1835,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 71,
-        "asal": 64,
+        "id": 77,
+        "asal": 69,
         "tujuan": 6
       },
       "geometry": {
@@ -1728,9 +1858,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 72,
-        "asal": 64,
-        "tujuan": 59
+        "id": 78,
+        "asal": 69,
+        "tujuan": 70
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1739,6 +1869,75 @@
             [
               98.715097231,
               3.607137731
+            ],
+            [
+              98.715021839,
+              3.607251354
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 79,
+        "asal": 70,
+        "tujuan": 71
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715021839,
+              3.607251354
+            ],
+            [
+              98.71502146717513,
+              3.6072519143741584
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 80,
+        "asal": 71,
+        "tujuan": 72
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71502146717513,
+              3.6072519143741584
+            ],
+            [
+              98.714987644,
+              3.607302889
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 81,
+        "asal": 72,
+        "tujuan": 61
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714987644,
+              3.607302889
             ],
             [
               98.714921664,
@@ -1751,9 +1950,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 73,
+        "id": 82,
         "asal": 26,
-        "tujuan": 65
+        "tujuan": 73
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1774,9 +1973,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 74,
-        "asal": 65,
-        "tujuan": 66
+        "id": 83,
+        "asal": 73,
+        "tujuan": 74
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1797,8 +1996,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 75,
-        "asal": 66,
+        "id": 84,
+        "asal": 74,
         "tujuan": 27
       },
       "geometry": {
@@ -1828,9 +2027,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 76,
-        "asal": 66,
-        "tujuan": 67
+        "id": 85,
+        "asal": 74,
+        "tujuan": 75
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1851,8 +2050,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 77,
-        "asal": 67,
+        "id": 86,
+        "asal": 75,
         "tujuan": 28
       },
       "geometry": {
@@ -1886,9 +2085,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 78,
+        "id": 87,
         "asal": 20,
-        "tujuan": 68
+        "tujuan": 76
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1909,9 +2108,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 79,
-        "asal": 68,
-        "tujuan": 69
+        "id": 88,
+        "asal": 76,
+        "tujuan": 77
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1932,9 +2131,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 80,
-        "asal": 69,
-        "tujuan": 70
+        "id": 89,
+        "asal": 77,
+        "tujuan": 78
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1955,9 +2154,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 81,
-        "asal": 70,
-        "tujuan": 71
+        "id": 90,
+        "asal": 78,
+        "tujuan": 79
       },
       "geometry": {
         "type": "MultiLineString",
@@ -1978,8 +2177,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 82,
-        "asal": 71,
+        "id": 91,
+        "asal": 79,
         "tujuan": 28
       },
       "geometry": {
@@ -2001,9 +2200,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 83,
+        "id": 92,
         "asal": 22,
-        "tujuan": 72
+        "tujuan": 80
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2024,9 +2223,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 84,
-        "asal": 72,
-        "tujuan": 73
+        "id": 93,
+        "asal": 80,
+        "tujuan": 81
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2047,9 +2246,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 85,
-        "asal": 73,
-        "tujuan": 74
+        "id": 94,
+        "asal": 81,
+        "tujuan": 82
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2070,9 +2269,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 86,
-        "asal": 74,
-        "tujuan": 69
+        "id": 95,
+        "asal": 82,
+        "tujuan": 77
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2093,9 +2292,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 87,
-        "asal": 73,
-        "tujuan": 75
+        "id": 96,
+        "asal": 81,
+        "tujuan": 83
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2116,9 +2315,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 88,
-        "asal": 75,
-        "tujuan": 68
+        "id": 97,
+        "asal": 83,
+        "tujuan": 76
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2139,9 +2338,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 89,
-        "asal": 75,
-        "tujuan": 72
+        "id": 98,
+        "asal": 83,
+        "tujuan": 80
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2166,9 +2365,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 90,
-        "asal": 64,
-        "tujuan": 36
+        "id": 99,
+        "asal": 69,
+        "tujuan": 84
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2177,6 +2376,29 @@
             [
               98.715097231,
               3.607137731
+            ],
+            [
+              98.715013753,
+              3.607016917
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 100,
+        "asal": 84,
+        "tujuan": 36
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715013753,
+              3.607016917
             ],
             [
               98.714934735,
@@ -2189,9 +2411,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 91,
-        "asal": 61,
-        "tujuan": 76
+        "id": 101,
+        "asal": 64,
+        "tujuan": 85
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2200,6 +2422,29 @@
             [
               98.714882647,
               3.607831342
+            ],
+            [
+              98.714923104,
+              3.607830433
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 102,
+        "asal": 85,
+        "tujuan": 86
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714923104,
+              3.607830433
             ],
             [
               98.715839587,
@@ -2212,9 +2457,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 92,
-        "asal": 76,
-        "tujuan": 77
+        "id": 103,
+        "asal": 86,
+        "tujuan": 87
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2239,9 +2484,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 93,
-        "asal": 77,
-        "tujuan": 78
+        "id": 104,
+        "asal": 87,
+        "tujuan": 88
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2262,9 +2507,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 94,
-        "asal": 78,
-        "tujuan": 79
+        "id": 105,
+        "asal": 88,
+        "tujuan": 89
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2285,9 +2530,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 95,
-        "asal": 77,
-        "tujuan": 80
+        "id": 106,
+        "asal": 87,
+        "tujuan": 90
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2308,9 +2553,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 96,
-        "asal": 80,
-        "tujuan": 81
+        "id": 107,
+        "asal": 90,
+        "tujuan": 91
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2331,9 +2576,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 97,
-        "asal": 81,
-        "tujuan": 76
+        "id": 108,
+        "asal": 91,
+        "tujuan": 86
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2354,9 +2599,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 98,
-        "asal": 81,
-        "tujuan": 70
+        "id": 109,
+        "asal": 91,
+        "tujuan": 78
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2377,9 +2622,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 99,
-        "asal": 80,
-        "tujuan": 82
+        "id": 110,
+        "asal": 90,
+        "tujuan": 92
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2400,9 +2645,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 100,
-        "asal": 82,
-        "tujuan": 83
+        "id": 111,
+        "asal": 92,
+        "tujuan": 93
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2427,9 +2672,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 101,
-        "asal": 83,
-        "tujuan": 84
+        "id": 112,
+        "asal": 93,
+        "tujuan": 94
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2438,6 +2683,29 @@
             [
               98.715824379,
               3.606651283
+            ],
+            [
+              98.715690295,
+              3.606521389
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 113,
+        "asal": 94,
+        "tujuan": 95
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715690295,
+              3.606521389
             ],
             [
               98.71567242,
@@ -2454,8 +2722,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 102,
-        "asal": 84,
+        "id": 114,
+        "asal": 95,
         "tujuan": 30
       },
       "geometry": {
@@ -2477,9 +2745,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 103,
-        "asal": 83,
-        "tujuan": 85
+        "id": 115,
+        "asal": 93,
+        "tujuan": 96
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2500,9 +2768,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 104,
-        "asal": 85,
-        "tujuan": 22
+        "id": 116,
+        "asal": 96,
+        "tujuan": 97
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2519,6 +2787,25 @@
             [
               98.715744838,
               3.606632288
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 117,
+        "asal": 97,
+        "tujuan": 22
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715744838,
+              3.606632288
             ],
             [
               98.715655725,
@@ -2531,9 +2818,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 105,
-        "asal": 85,
-        "tujuan": 74
+        "id": 118,
+        "asal": 96,
+        "tujuan": 82
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2554,9 +2841,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 106,
-        "asal": 68,
-        "tujuan": 71
+        "id": 119,
+        "asal": 76,
+        "tujuan": 79
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2581,9 +2868,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 107,
-        "asal": 67,
-        "tujuan": 65
+        "id": 120,
+        "asal": 75,
+        "tujuan": 73
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2604,9 +2891,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 108,
-        "asal": 65,
-        "tujuan": 63
+        "id": 121,
+        "asal": 73,
+        "tujuan": 98
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2615,6 +2902,29 @@
             [
               98.715135517,
               3.607615868
+            ],
+            [
+              98.714917519,
+              3.607624827
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 122,
+        "asal": 98,
+        "tujuan": 66
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714917519,
+              3.607624827
             ],
             [
               98.714875524,
@@ -2627,9 +2937,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 109,
+        "id": 123,
         "asal": 17,
-        "tujuan": 86
+        "tujuan": 99
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2650,8 +2960,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 110,
-        "asal": 86,
+        "id": 124,
+        "asal": 99,
         "tujuan": 15
       },
       "geometry": {
@@ -2673,7 +2983,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 111,
+        "id": 125,
         "asal": 17,
         "tujuan": 16
       },
@@ -2696,9 +3006,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 112,
+        "id": 126,
         "asal": 17,
-        "tujuan": 87
+        "tujuan": 100
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2719,8 +3029,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 113,
-        "asal": 87,
+        "id": 127,
+        "asal": 100,
         "tujuan": 33
       },
       "geometry": {
@@ -2742,8 +3052,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 114,
-        "asal": 87,
+        "id": 128,
+        "asal": 100,
         "tujuan": 37
       },
       "geometry": {
@@ -2765,7 +3075,7 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 115,
+        "id": 129,
         "asal": 43,
         "tujuan": 45
       },
@@ -2792,9 +3102,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 116,
+        "id": 130,
         "asal": 43,
-        "tujuan": 88
+        "tujuan": 101
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2815,9 +3125,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 117,
-        "asal": 88,
-        "tujuan": 89
+        "id": 131,
+        "asal": 101,
+        "tujuan": 102
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2838,9 +3148,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 118,
-        "asal": 89,
-        "tujuan": 90
+        "id": 132,
+        "asal": 102,
+        "tujuan": 103
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2865,8 +3175,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 119,
-        "asal": 90,
+        "id": 133,
+        "asal": 103,
         "tujuan": 44
       },
       "geometry": {
@@ -2888,9 +3198,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 120,
+        "id": 134,
         "asal": 45,
-        "tujuan": 89
+        "tujuan": 102
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2911,9 +3221,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 121,
+        "id": 135,
         "asal": 42,
-        "tujuan": 91
+        "tujuan": 104
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2934,9 +3244,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 122,
-        "asal": 91,
-        "tujuan": 88
+        "id": 136,
+        "asal": 104,
+        "tujuan": 101
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2961,9 +3271,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 123,
-        "asal": 90,
-        "tujuan": 91
+        "id": 137,
+        "asal": 103,
+        "tujuan": 104
       },
       "geometry": {
         "type": "MultiLineString",
@@ -2988,9 +3298,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 124,
-        "asal": 51,
-        "tujuan": 92
+        "id": 138,
+        "asal": 52,
+        "tujuan": 105
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3011,9 +3321,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 125,
-        "asal": 92,
-        "tujuan": 48
+        "id": 139,
+        "asal": 105,
+        "tujuan": 106
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3028,6 +3338,29 @@
               3.607173346
             ],
             [
+              98.714123082,
+              3.607171023
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 140,
+        "asal": 106,
+        "tujuan": 48
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714123082,
+              3.607171023
+            ],
+            [
               98.714290868,
               3.607168502
             ]
@@ -3038,9 +3371,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 126,
-        "asal": 54,
-        "tujuan": 92
+        "id": 141,
+        "asal": 55,
+        "tujuan": 105
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3061,9 +3394,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 127,
-        "asal": 63,
-        "tujuan": 58
+        "id": 142,
+        "asal": 66,
+        "tujuan": 60
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3084,8 +3417,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 128,
-        "asal": 53,
+        "id": 143,
+        "asal": 54,
         "tujuan": 17
       },
       "geometry": {
@@ -3155,9 +3488,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 129,
+        "id": 144,
         "asal": 33,
-        "tujuan": 84
+        "tujuan": 95
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3178,9 +3511,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 130,
-        "asal": 82,
-        "tujuan": 78
+        "id": 145,
+        "asal": 92,
+        "tujuan": 88
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3201,9 +3534,9 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 131,
+        "id": 146,
         "asal": 44,
-        "tujuan": 52
+        "tujuan": 53
       },
       "geometry": {
         "type": "MultiLineString",
@@ -3224,8 +3557,8 @@
     {
       "type": "Feature",
       "properties": {
-        "id": 132,
-        "asal": 86,
+        "id": 147,
+        "asal": 99,
         "tujuan": 40
       },
       "geometry": {
@@ -3239,6 +3572,202 @@
             [
               98.714532575,
               3.606973693
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 149,
+        "asal": 53,
+        "tujuan": 106
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714122048,
+              3.607097345
+            ],
+            [
+              98.714123082,
+              3.607171023
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 150,
+        "asal": 63,
+        "tujuan": 67
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.71429923889661,
+              3.6076490958174903
+            ],
+            [
+              98.714464743,
+              3.607644971
+            ],
+            [
+              98.714604708,
+              3.607735537
+            ],
+            [
+              98.714686762,
+              3.607736961
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 151,
+        "asal": 59,
+        "tujuan": 72
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714822546,
+              3.607304122
+            ],
+            [
+              98.714987644,
+              3.607302889
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 152,
+        "asal": 94,
+        "tujuan": 97
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715690295,
+              3.606521389
+            ],
+            [
+              98.715686007,
+              3.606590087
+            ],
+            [
+              98.715744838,
+              3.606632288
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 153,
+        "asal": 85,
+        "tujuan": 98
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.714923104,
+              3.607830433
+            ],
+            [
+              98.714917519,
+              3.607624827
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154,
+        "asal": 84,
+        "tujuan": 68
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715013753,
+              3.607016917
+            ],
+            [
+              98.715019054,
+              3.607139227
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 155,
+        "asal": 68,
+        "tujuan": 70
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715019054,
+              3.607139227
+            ],
+            [
+              98.715021839,
+              3.607251354
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 156,
+        "asal": 70,
+        "tujuan": 71
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              98.715021839,
+              3.607251354
+            ],
+            [
+              98.71502146717513,
+              3.6072519143741584
             ]
           ]
         ]
