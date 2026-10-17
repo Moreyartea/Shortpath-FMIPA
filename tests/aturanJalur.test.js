@@ -169,7 +169,7 @@ describe('Aturan Jalur FMIPA (aturanJalur.json)', () => {
     const snap = findNearestPoint(posDekat18, graphData.pointsById, { kecualikanTitik: kecualikan })
     expect(snap).not.toBeNull()
     expect(snap.id).not.toBe(18)
-    expect([39, 57]).toContain(snap.id)
+    expect(graphData.graph[18].map((e) => e.to)).toContain(snap.id)
   })
 
   test('Teks langkah: penanda tidak sama dengan tempat tujuan langkah, dan langkah identik digabung', () => {
